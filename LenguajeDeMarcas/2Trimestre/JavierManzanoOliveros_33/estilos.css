@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+#main-content {
+    display: flex;
+}
+
+.column {
+    padding: 10px;
+}
+
+#left-column {
+    width: 25%;
+}
+
+#right-column {
+    width: 75%;
+}
+
+ul {
+    column-count: 1;
+    column-gap: 20px;
+}
+
+#right-column ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none; /* Eliminar los puntos de la lista */
+}
+
+#right-column ul li {
+    width: 30%;
+}
+
+p {
+    text-align: justify;
+}

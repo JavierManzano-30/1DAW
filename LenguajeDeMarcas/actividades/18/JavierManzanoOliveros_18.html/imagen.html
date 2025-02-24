@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imágen</title>
+    <style>
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .texto {
+            flex: 1;
+            margin: 0 20px;
+        }
+
+        .image {
+            flex: 0 0 30%;
+        }
+
+        /*img: todas las imágenes tendrán por defecto un width del 60%, siendo esta el tamaño más pequeño y el por defecto escrito en html*/
+        img {
+            width: 60%;
+            height: auto;
+        }
+
+        .image-left img {
+            content: url('descarga.jpg');
+        }
+
+        .image-right img {
+            content: url('algomas.jpg');
+        }
+
+        /* He usado la misma imágen cambiándole el porcentaje del tamaño por cada una de las medidas :P*/
+        @media (min-width: 600px) {
+            .image-left img {
+                content: url('descarga_mediana.jpg');
+                width: 80%;
+            }
+
+            .image-right img {
+                content: url('algomas_mediana.jpg');
+                width: 80%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .image-left img {
+                content: url('descarga_grande.jpg');
+                width: 100%;
+            }
+
+            .image-right img {
+                content: url('algomas_grande.jpg');
+                width: 100%;
+            }
+        }
+
+        body {
+            background: 
+            linear-gradient(blue,white);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1 style="color: cornflowerblue;"> IMAGENES </h1>
+        <div class="image-container">
+            <div class="image image-left">
+                <img src="descarga.jpg" alt="">
+            </div>
+            <div class="texto">
+                <p> Sueño contigo
+                    que me has dado?
+                    sin tu cariño no me habría enamorado
+                    sueño contigo
+                    que me has dado?
+                    y es que te quiero y tú me estás olvidando
+                    (bis)
+                </p>
+            </div>
+        </div>
+        <div class="image-container">
+            <div class="texto">
+                <p> y a mi corazón yo le pregunto
+                    seguro que me responderá
+                    solo quiero amar
+                    solo quiero amar
+                    
+                    ella ya se marchó de mi lado
+                    y un recuerdo solo me dejó
+                    y una espina clavada en mi corazón
+                    y una espina clavada
+                </p>
+            </div>
+            <div class="image image-right">
+                <img src="algomas.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

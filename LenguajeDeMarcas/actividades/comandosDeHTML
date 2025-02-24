@@ -1,0 +1,65 @@
+Aquí tienes una lista con una definición breve de los comandos (etiquetas) más comunes de HTML:
+
+Estructura básica
+<!DOCTYPE html>: Define el tipo de documento como HTML5.
+<html>: Etiqueta raíz que contiene todo el contenido de la página.
+<head>: Contiene metadatos sobre el documento, como título y enlaces a estilos.
+<title>: Define el título que aparece en la pestaña del navegador.
+<body>: Contiene el contenido visible de la página.
+Texto y formato
+<h1> a <h6>: Encabezados, donde <h1> es el más grande y <h6> el más pequeño.
+<p>: Define un párrafo.
+<b>: Texto en negrita (enfasis visual).
+<strong>: Negrita con importancia semántica.
+<i>: Texto en cursiva (enfasis visual).
+<em>: Cursiva con importancia semántica.
+<br>: Salto de línea.
+<hr>: Línea horizontal divisoria.
+Enlaces e imágenes
+<a>: Crea un enlace (hipervínculo).
+<img>: Muestra una imagen.
+<figure>: Contiene una imagen con su descripción opcional.
+<figcaption>: Título o descripción de una figura.
+Listas
+<ul>: Lista desordenada (con viñetas).
+<ol>: Lista ordenada (numerada).
+<li>: Elemento de una lista.
+Tablas
+<table>: Crea una tabla.
+<tr>: Define una fila en la tabla.
+<td>: Celda de una tabla.
+<th>: Celda de encabezado de una tabla.
+<caption>: Título o descripción de la tabla.
+Formularios
+<form>: Crea un formulario interactivo.
+<input>: Campo de entrada.
+<textarea>: Campo de texto largo.
+<button>: Botón clicable.
+<label>: Etiqueta para campos de formulario.
+<select>: Lista desplegable.
+<option>: Opción dentro de una lista desplegable.
+Multimedia
+<audio>: Reproduce audio.
+<video>: Reproduce video.
+<source>: Fuente para elementos multimedia.
+<iframe>: Inserta contenido externo como otro HTML o videos.
+Estructura avanzada
+<div>: Contenedor genérico para agrupar contenido.
+<span>: Contenedor en línea para estilizar partes específicas del texto.
+<section>: Define una sección del documento.
+<article>: Contenido independiente como artículos o entradas.
+<header>: Encabezado de una sección o página.
+<footer>: Pie de página.
+<nav>: Navegación de la página.
+<main>: Contenido principal de la página.
+<aside>: Contenido relacionado como barras laterales.
+Otros
+<script>: Inserta o enlaza scripts de JavaScript.
+<link>: Vincula archivos externos como CSS.
+<style>: Define estilos CSS directamente en HTML.
+<meta>: Proporciona metadatos como codificación o descripciones.
+---------------------------------------------------------------
+<ul style="list-style-type:circle;">
+  <li>Elemento 1</li>
+  <li>Elemento 2</li>
+</ul>

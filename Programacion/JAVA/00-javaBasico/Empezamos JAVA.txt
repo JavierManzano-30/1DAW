@@ -1,0 +1,8 @@
+public class Clase {   //Clase debe ser igual al nombre del archivo
+     public static void main (String[] args){
+     //TODO
+     }
+}
+
+HolaMundo: Empieza en mayúscula para las CLASES
+

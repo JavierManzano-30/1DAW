@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Imagen</title>
+    <style>
+        h1 {
+            color: blue;
+            text-align: center;
+            transition: color 0.5s;
+        }
+
+        h1:hover {
+            color: brown;
+        }
+
+        marquee {
+            background-color: rgb(203, 189, 63);
+        }
+
+        body {
+            background: 
+            linear-gradient(rgb(12, 12, 178),white);
+        }
+    </style>
+    <script>
+        function goHome() {
+            window.location.href = "https://www.google.com/";
+        }
+    </script>
+</head>
+
+<body>
+    <marquee direction="down">
+        <h1>Mapa de Imagen</h1>
+    </marquee>
+
+    <p>Pasa el mouse sobre las áreas para interactuar con los enlaces:</p>
+    <ol>
+        <li>Monitor</li>
+        <li>Ordenador</li>
+        <li>Teclado</li>
+        <li>Ratón</li>
+    </ol>
+    <img src="componentes-principales-de-un-ordenador-1.jpg" alt="Mapa de Imagen" usemap="#image-map">
+
+    <!--Aquí va el mapa-->
+    <map name="image-map">
+        <!--Easter Egg: pulsa el botón de apagar para una sorpresa-->
+        <area class="botonapagar" shape="circle" coords="96,271,12" href="#" alt="Imagen" onclick="goHome()"
+            target="_blank">
+
+        <!--Este es el del monitor-->
+        <area shape="rect" coords="580,37,206,245"
+            href="https://www.pccomponentes.com/monitor-aoc-q27g4xf-27-led-fast-ips-qhd-180hz"
+            alt="https://www.pccomponentes.com/" target="_blank">
+
+        <!--Este es el del ratón-->
+        <area shape="circle" coords="583,377,35"
+            href="https://www.pccomponentes.com/krom-keos-raton-gaming-rgb-6400dpi-negro"
+            alt="https://www.pccomponentes.com/" target="_blank">
+
+        <!--Este es el de la torre-->
+        <area shape="rect" coords="172,57,19,405"
+            href="https://www.pccomponentes.com/pccom-ready-amd-ryzen-7-5800x-32gb-1tb-ssd-rtx-4060-ti-windows-11-home"
+            alt="https://www.pccomponentes.com/" target="_blank">
+
+        <!--Este es el del teclado-->
+        <area shape="rect" coords="519,393,211,355"
+            href="https://www.pccomponentes.com/steelseries-apex-3-teclado-gaming-rgb-layout-pt"
+            alt="https://www.pccomponentes.com/" target="_blank">
+    </map>
+    <p style="color: aquamarine;">
+        Busca el easter egg
+    </p>
+</body>
+
+</html>

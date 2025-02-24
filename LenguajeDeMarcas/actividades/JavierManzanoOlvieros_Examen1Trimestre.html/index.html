@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogwarts</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .indice {
+            display: flex;
+            background-color: rgb(1, 1, 54);
+            margin: 20px;
+            text-align: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+
+        a {
+            color: white;
+            text-align: center;
+        }
+
+        .bienvenida {
+            background-color: blue;
+            display: flex;
+        }
+
+        .frases {
+            padding: 50px;
+            text-align: left;
+        }
+
+        .imagenCasa {
+            padding: 50px;
+            width: 60%;
+            height: auto;
+            flex: 0 0 30%;
+        }
+
+        .lechuza {
+            background-color: aqua;
+        }
+
+        .footer {
+            color: white;
+            display: flex;
+        }
+
+        footer {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Bienvenidos a Hogwarts</h1>
+        <picture>
+            <source src="hogwarts1.jpg" media="(min-width: 900px)">
+            <source src="hogwarts2.jpg" media="(min-width: 600px)">
+            <source src="hogwarts3.jpg" media="(max-width: 600px)">
+        </picture>
+        <div class="indice">
+            <section>
+                <a href="index.html">Inicio</a>
+            </section>
+            <section>
+                <a href="casas.html">Casas</a>
+            </section>
+            <section>
+                <a href="">Profesores</a>
+            </section>
+            <section>
+                <a href="lechuza.html">Lechuza</a>
+            </section>
+        </div>
+    </header>
+    <div class="bienvenida">
+        <section class="frases">
+            <p>Te doy la bienvenida a la web del Colegio Hogwarts de Magia y Hechizería (sí, fíjate, nosotros también
+                nos hemos metido en esto del internet).
+            </p>
+            <p>Pasa, ponte cómodo y con una cerveza de mantequilla en mano navega tranquilamente conociendo más de
+                nuestro maravilloso colegio.
+            </p>
+            <p>Pero no te quedes ahí quieto, hombre, ¡pasa!
+            </p>
+        </section>
+        <aside class="imagenCasa">
+            <img src="hogwarts.jpg" alt="Casahogwarts">
+        </aside>
+    </div>
+    <div class="lechuza">
+        <section>
+            <h2>¡Envíanos una carta!</h2>
+            <p>Si tienes problemas para formalizar tu matrícula, la varita ha dejado de funcionarte, o te gustaría vivir
+                en el colegio antes de ingresar, haz clic en la carta de la lechuza para contactar con nosotros.</p>
+            <img src="lechuza.jpg" alt="MapaDeImagen" usemap="#lechuza-img">
+            <map name="lechuza-img">
+                <area class="carta" shape="rect" coords="163,94,303,179" href="lechuza.html"
+                    alt="https://www.google.com/?hl=es" target="_blank">
+            </map>
+        </section>
+    </div>
+    <footer style="background-color: rgb(1, 1, 136);">
+        <p class="footer">&copy;2023 HOGWARTS,S.A.</p>
+    </footer>
+</body>
+
+</html>

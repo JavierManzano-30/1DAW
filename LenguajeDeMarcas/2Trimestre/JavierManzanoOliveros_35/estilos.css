@@ -1,0 +1,49 @@
+h1 {
+    text-align: center;
+    background-color: cornsilk;
+}
+
+.sololeveling {
+    text-align: center;
+    background-color: rgb(158, 65, 246);
+    word-spacing: 10px;
+    font-variant: small-caps;
+}
+
+.onepiece {
+    text-align: center;
+    background-color: rgb(245, 125, 125);
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.attackontitan {
+    text-align: center;
+    background-color: rgb(125, 245, 125);
+    text-indent: 50px;
+    font-size: 20px;
+}
+
+.dragonball {
+    text-align: center;
+    background-color: rgb(80, 80, 240);
+    text-transform: uppercase;
+    line-height: 2;
+}
+
+.naruto {
+    text-align: center;
+    background-color: rgb(240, 240, 80);
+    letter-spacing: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.uzumaki {
+    vertical-align: super;
+}
+
+.bleach {
+    text-align: center;
+    background-color: rgb(240, 80, 240);
+    font-style: italic;
+}

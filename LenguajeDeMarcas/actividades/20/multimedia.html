@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimedia</title>
+    <style>
+        h1 {
+            text-align: center;
+            color: rgb(59, 56, 226);
+            background-color: rgba(224, 49, 84, 0.744)
+        }
+        
+    </style>
+    <link rel="shortcut icon" href="satoru.jpg" type="image/x-icon">
+</head>
+<body>
+    <!--Un video que empiece a reproducirse nada más cargar la página, que se repita en bucle y que esté muteado.
+    Un vídeo que no empiece a reproducirse al cargar la página, que no cargue hasta que el usuario le de al play y que tenga una imagen de portada.
+    Un vídeo que no empiece a reproducirse desde el principio y que tampoco llegue al final (marca de tiempo de inicio y fin).
+    Un audio que empiece a reproducirse al cargar la página.
+    Todos los elementos tienen que tener los controles.-->
+
+    <h1>Multimedia</h1>
+    <hr>
+    <div>
+        <h2>Video número uno</h2>
+        <p>Se reproduce nada más cargar la página, se repite en bucle y está muteado.</p>
+        <video src="landscape.mp4" width="640px" controls autoplay muted loop></video>
+    </div>
+    <hr>
+    <div>
+        <h2>Video número dos</h2>
+        <p>No se reproduce al cargar la página, no carga hasta que el usuario le de al play y con una imagen de portada.</p>
+        <video src="chicaPortal.mp4" width="640px" controls muted loop poster="satoru.jpg" preload="none"></video>
+    </div>
+    <hr>
+    <div>
+        <h2>Video número tres</h2>
+        <p>No se reproduce desde el principio y no llega al final.</p>
+        <video src="parejaQueSeQuiere.mp4#t=8,13" width="640px" controls autoplay muted loop></video>
+    </div>
+    <hr>
+    <div>
+        <h2>Audio</h2>
+        <p>Audio que se reproduce al cargar la página.</p>
+        <audio controls autoplay>
+            <source src="Arcane.mp3" type="audio/mpeg"> 
+        </audio>
+    </div>
+</body>
+</html>

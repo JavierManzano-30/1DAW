@@ -1,0 +1,41 @@
+div {
+    width: 300px;
+    height: 50px;
+    border: 1px solid #000000;
+    margin: 1px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+/*negro*/
+.negro-safeColor { background-color: black; }
+.negro-rgb { background-color: rgb(0, 0, 0); }
+.negro-rgba { background-color: rgba(0, 0, 0, 1); }
+.negro-hex { background-color: #000000; }
+
+/*gris*/
+.gris-safeColor { background-color: grey; }
+.gris-rgb { background-color: rgb(128, 128, 128); }
+.gris-rgba { background-color: rgba(128, 128, 128, 1); }
+.gris-hex { background-color: #808080; }
+
+/*rojo*/
+.rojo-safeColor { background-color: red; }
+.rojo-rgb { background-color: rgb(255, 0, 0); }
+.rojo-rgba { background-color: rgba(255, 0, 0, 1); }
+.rojo-hex { background-color: #FF0000; }
+
+/* rosa */
+.rosa-1 { background-color: #FFB6C1; height: 100px; }
+.rosa-2 { background-color: #FF69B4; height: 100px; }
+.rosa-3 { background-color: #FF1493; height: 100px; }
+.rosa-4 { background-color: #DB7093; height: 100px; }
+.rosa-5 { background-color: #C71585; height: 100px; }
+.rosa-6 { background-color: #D87093; height: 100px; }
+.rosa-7 { background-color: #FF69B4; height: 100px; }
+.rosa-8 { background-color: #FF1493; height: 100px; }
+.rosa-9 { background-color: #DB7093; height: 100px; }
+.rosa-10 { background-color: #C71585; height: 100px; }

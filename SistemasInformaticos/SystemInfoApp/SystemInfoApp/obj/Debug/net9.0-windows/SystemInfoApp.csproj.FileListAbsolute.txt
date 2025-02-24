@@ -1,0 +1,16 @@
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\bin\Debug\net9.0-windows\SystemInfoApp.exe
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\bin\Debug\net9.0-windows\SystemInfoApp.deps.json
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\bin\Debug\net9.0-windows\SystemInfoApp.runtimeconfig.json
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\bin\Debug\net9.0-windows\SystemInfoApp.dll
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\bin\Debug\net9.0-windows\SystemInfoApp.pdb
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\obj\Debug\net9.0-windows\SystemInfoApp.Form1.resources
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\obj\Debug\net9.0-windows\SystemInfoApp.csproj.GenerateResource.cache
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\obj\Debug\net9.0-windows\SystemInfoApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\obj\Debug\net9.0-windows\SystemInfoApp.AssemblyInfoInputs.cache
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\obj\Debug\net9.0-windows\SystemInfoApp.AssemblyInfo.cs
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\obj\Debug\net9.0-windows\SystemInfoApp.csproj.CoreCompileInputs.cache
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\obj\Debug\net9.0-windows\SystemInfoApp.dll
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\obj\Debug\net9.0-windows\refint\SystemInfoApp.dll
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\obj\Debug\net9.0-windows\SystemInfoApp.pdb
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\obj\Debug\net9.0-windows\SystemInfoApp.genruntimeconfig.cache
+C:\Users\javie\source\repos\SystemInfoApp\SystemInfoApp\obj\Debug\net9.0-windows\ref\SystemInfoApp.dll

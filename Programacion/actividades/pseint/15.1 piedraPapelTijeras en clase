@@ -1,0 +1,47 @@
+Algoritmo piedraPapelTijeras
+	
+	Definir piedra, papel, tijeras Como Entero
+	Definir jugador, maquina Como Entero
+	
+	maquina = azar(3)
+	
+	piedra = 1
+	papel = 2
+	tijeras = 3
+	win = Falso
+	
+	Repetir
+		Escribir "Bienvenido al juego, elija piedra-1, papel-2 o tijeras-3:"
+		Leer jugador
+	 
+	Si jugador = maquina Entonces
+		Escribir "Empate"
+	SiNo
+		Si jugador = 1 y maquina = 3 Entonces
+			Escribir "Has ganado"
+		SiNo
+			Si jugador = 2 y maquina = 3 Entonces
+				Escribir "Has perdido"
+			SiNo
+				Si jugador = 1 y maquina = 2 Entonces
+					Escribir "Has perdido"
+				SiNo
+					Si jugador = 2 y maquina = 1 Entonces
+						Escribir "Has ganado"
+					SiNo
+						Si jugador = 3 y maquina = 1 Entonces
+							Escribir "Has perdido"
+						SiNo
+							Si jugado =3 y maquina = 2 Entonces
+								Escribir "Has ganado"
+							FinSi
+						FinSi
+					FinSi
+				FinSi
+			FinSi	
+		FinSi
+	FinSi
+    Hasta Que win = Verdadero
+	
+	
+FinAlgoritmo

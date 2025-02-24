@@ -1,0 +1,61 @@
+Algoritmo piedraPapelTijerasProfesor
+	
+	Definir  opcionUsuario, opcionOrdenador Como Entero
+	Definir  piedra, papel, tijeras Como Entero
+	Definir seguirJugando Como Caracter
+	
+	piedra = 1
+	papel = 2
+	tijeras = 3
+	
+	Repetir
+		
+	
+	//Opciones
+	Escribir "Elige una opción:"
+    Escribir "1 va a ser piedra"
+	Escribir "2 va a ser papel"
+	Escribir "3 va a ser tijeras"
+	
+	Leer opcionUsuario
+	
+	//Genera un número aleatorio del 1 al 3
+	opcionOrdenador = azar (3) + 1
+	
+	//Opcion elegida por el usuario
+	Si opcionUsuario = piedra Entonces
+		Escribir "Usuario ha elegido: Piedra"
+	SiNo
+		Si opcionUsuario = papel Entonces
+			Escribir "Usuario ha elegido: Papel"
+		SiNo
+			Escribir "Usuario ha elegido: Tijeras"
+		FinSi
+	FinSi
+	
+	//Opcion elegida por el ordenador
+	Si opcionOrdenador = piedra Entonces
+		Escribir "Ordenador ha elegido: Piedra"
+	SiNo
+		Si opcionUsuario = papel Entonces
+			Escribir "Ordenador ha elegido: Papel"
+		SiNo
+			Escribir "Ordenador ha elegido: Tijeras"
+		FinSi
+	FinSi
+	
+	//Determinar el ganador
+	Si opcionUsuario = opcionOrdenador Entonces
+		Escribir "Es un empate"
+	SiNo
+		Si (opcionUsuario = piedra y opcionOrdenador = tijeras) o (opcionUsuario = papel y opcionOrdenador = piedra) o (opcionUsuario = tijeras y opcionOrdenador = papel) Entonces
+			Escribir "Has ganado campeón, fiera, mastodonte"
+		SiNo
+			Escribir "Te ha ganado una máquina payaso"
+		FinSi
+	FinSi
+	
+	Escribir "¿Quieres seguir jugando? (S/N)"
+	Leer seguirJugando
+	Hasta Que seguirJugando = "n" o seguirJugando = "N"
+FinAlgoritmo

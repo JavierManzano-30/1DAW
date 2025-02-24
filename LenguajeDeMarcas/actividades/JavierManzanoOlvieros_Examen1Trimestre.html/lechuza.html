@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lechuza</title>
+    <style>
+        .indice {
+            display: flex;
+            background-color: rgb(1, 1, 54);
+            margin: 20px;
+            text-align: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        a {
+            color: white;
+            text-align: center;
+        }
+
+        .formulario {
+            background-color: rgb(1, 1, 204);
+            padding: 50px;
+        }
+
+        .footer {
+            color: white;
+            display: flex;
+        }
+
+        .mensaje {
+            color: white;
+        }
+
+        footer {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Lechuza</h1>
+    <div class="indice">
+        <section>
+            <a href="index.html">Inicio</a>
+        </section>
+        <section>
+            <a href="casas.html">Casas</a>
+        </section>
+        <section>
+            <a href="">Profesores</a>
+        </section>
+        <section>
+            <a href="lechuza.html">Lechuza</a>
+        </section>
+    </div>
+    <div class="formulario">
+        <form name="persona" method="post" action="http://pagina.com/send.php">
+            <label for="usuario" style="color: white;">Nombre:</label>
+            <input type="text" name="usuario" placeholder="Escribe tu nombre" maxlength="30">
+        </form>
+        <br>
+        <form name="animal" method="post" action="http://pagina.com/send.php">
+            <label for="lechuza" style="color: white;">Lechuza:</label>
+            <input type="email" name="correo" placeholder="correo@empresa.com" maxlength="30" >
+        </form>
+        <br>
+        <form name="persona" method="post" action="http://pagina.com/send.php">
+            <p style="color: white;">¿Cómo nos has conocido?</p>
+            <input type="radio" name="rradio" value="amigo">
+            <label style="color: white;">Un amigo</label>
+            <input type="radio" name="rradio" value="antiguo">
+            <label style="color: white;">Un antiguo alumno</label>
+            <input type="radio" name="rradio" value="callejon">
+            <label style="color: white;">En el Callejón Diagón</label>
+            <input type="radio" name="rradio" value="otros">
+            <label style="color: white;">Otros</label>
+        </form>
+        <br>
+        <form name="persona" method="post" action="http://pagina.com/send.php">
+            <label class="mensaje">Escribe un mensaje</label>
+            <input type="text" name="texto" style="height: 35px;" maxlength="300">
+        </form>
+        <br>
+        <form action="http://pagina.com/send.php">
+            <input type="checkbox">
+            <label style="color: white;">He leído y acepto el <u>aviso legal y la política de privacidad.</u></label>
+        </form>
+    </div>
+    <footer style="background-color: rgb(1, 1, 136);">
+        <p class="footer">&copy;2023 HOGWARTS,S.A.</p>
+    </footer>
+</body>
+
+</html>

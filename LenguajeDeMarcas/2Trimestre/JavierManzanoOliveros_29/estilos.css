@@ -1,0 +1,26 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#contenedor {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    height: 100%;
+}
+
+#contenedor div {
+    flex: 1;
+}
+
+.color-1 { background-color: #ff0064; }
+.color-2 { background-color: #ff0a68; }
+.color-3 { background-color: #fc247a; }
+.color-4 { background-color: #fc3f87; }
+.color-5 { background-color: #f95898; }
+.color-6 { background-color: #fe6ca4; }
+.color-7 { background-color: #fa7aad; }
+.color-8 { background-color: #ff90ba; }
+.color-9 { background-color: #fcb4d1; }
+.color-10 { background-color: #ffc4db; }

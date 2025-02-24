@@ -1,0 +1,28 @@
+Algoritmo numeroPrimo
+	
+	Definir numUsuario Como Entero
+	Definir esPrimo Como Logico //0 o 1
+	esPrimo = Verdadero
+	
+	Escribir "Dime un número y te digo si es primo o no (tiene que ser mayor que 1):"
+	Leer numUsuario
+	
+	Si numUsuario <= 1 Entonces
+		Escribir "No es un número válido. Debe ser mayor que 1"
+	SiNo
+		
+		Para divisor = 2 Hasta numUsuario -1 Con Paso 1 Hacer
+			Si numUsuario % divisor = 0 Entonces
+				esPrimo = Falso
+			FinSi
+		FinPara
+		
+		Si esPrimo = Verdadero Entonces
+			Escribir numUsuario, " es un número primo"
+		SiNo
+			Escribir numUsuario, " no es un número primo"
+		FinSi
+	FinSi
+
+	
+FinAlgoritmo

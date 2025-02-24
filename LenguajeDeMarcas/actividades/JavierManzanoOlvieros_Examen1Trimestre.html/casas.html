@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casas</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        .indice {
+            display: flex;
+            background-color: rgb(1, 1, 54);
+            margin: 20px;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        a {
+            color: white;
+        }
+
+        .grifindor {
+            background-color: rgb(255, 35, 35);
+            padding: 50px;
+            display: flex;
+        }
+
+        .footer {
+            color: white;
+            display: flex;
+        }
+
+        .huflepuf {
+            background-color: yellow;
+            padding: 50px;
+            display: flex;
+        }
+
+        .ravenclaw {
+            background-color: blue;
+            padding: 50px;
+            display: flex;
+        }
+
+        .slitherin {
+            background-color: green;
+            padding: 50px;
+            display: flex;
+        }
+
+        td, th {
+            padding: 15px;
+        }
+
+        #spacing{
+            border-spacing: 15px;
+        }
+        
+        table td, 
+        table th {
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        
+        .AlumnoCarac {
+            background-color: rgb(204, 155, 250);
+        }
+
+        table td:nth-child(1) {
+            background-color: rgb(204, 155, 250);
+        }
+
+        table td:nth-child(2) {
+            background-color: rgb(204, 155, 250);
+        }
+
+        table td:nth-child(5) {
+            background-color: rgb(204, 155, 250);
+        }
+
+        table {
+            border-spacing: 20px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Casas</h1>
+    <img src="escudo.jpg" alt="escudo" height="300px">
+    <div class="indice">
+        <section>
+            <a href="index.html">Inicio</a>
+        </section>
+        <section>
+            <a href="casas.html">Casas</a>
+        </section>
+        <section>
+            <a href="">Profesores</a>
+        </section>
+        <section>
+            <a href="lechuza.html">Lechuza</a>
+        </section>
+    </div>
+    <div class="grifindor">
+        <p style="width: 70%;">Puedes pertenecer a Gryffindor, donde habitan los valientes. Su osadía, temple y caballerosidad ponen aparte a los Gryffindor.</p>
+        <img src="gryffindor.jpg" alt="griffindor" style="width: 30%;">
+    </div>
+    <div class="huflepuf">
+        <p style="width: 70%;">Puedes pertenecer a Hufflepuff, donde son justos y leales. Esos perseverantes Hufflepuff de verdad no temen al trabajo pesado</p>
+        <img src="hufflepuff.jpg" alt="hufflepuff" style="width: 30%;">
+    </div>
+    <div class="ravenclaw">
+        <p style="width: 70%;">O tal a la antigua sabiduría de Ravenclaw, si tienes una mente dispuesta, Porque los de inteligencia y erudición siempre encontrarán allí a sus semejantes.</p>
+        <img src="ravenclaw.jpg" alt="ravenclaw" style="width: 25%;">
+    </div>
+    <div class="slitherin">
+        <p>O tal vez en slitherin harás tus verdaderos amigos. Esa gente astuta utiliza cualquier medio para lograr sus fines.</p>
+        <img src="slytherin.jpg" alt="slitherin" style="width: 25%;">
+    </div>
+    <h2>Ranking</h2>
+    <p>Aquí puedes ver a nuestros alumnos más destacados, sus casas, sus clases favoritas y los puntos que han conseguido (o perdido) para sus casas.</p>
+    <table id="spacing">
+        <caption>Alumnos de Hogwarts</caption>
+        <tr class="AlumnoCarac">
+            <th colspan="2">Alumno</th>
+            <th colspan="3">Características</th>
+        </tr>
+        <tr class="AlumnoCarac">
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Casa</th>
+            <th>Asignatura favorita</th>
+            <th>Puntos  </th>
+        </tr>
+        <tr>
+            <td>Harry</td>
+            <td>Potter</td>
+            <td>Gryffindor</td>
+            <td>Defensa Contra las Artes Oscuras</td>
+            <td>300</td>
+        </tr>
+        <tr>
+            <td>Ron</td>
+            <td>Weasley</td>
+            <td>Gryffindor</td>
+            <td>Transformación</td>
+            <td>-100</td>
+        </tr>
+        <tr>
+            <td>Hermione</td>
+            <td>Granger</td>
+            <td>Gryffindor</td>
+            <td>Todas menos Adivinación</td>
+            <td>600</td>
+        </tr>
+        <tr>
+            <td>Luna</td>
+            <td>Lovegood</td>
+            <td>Ravenclaw</td>
+            <td>Encantamientos</td>
+            <td>150</td>
+        </tr>
+        <tr>
+            <td>Draco</td>
+            <td>Malfoy</td>
+            <td>Slytherin</td>
+            <td>Cuidado de criaturas mágicas</td>
+            <td>300</td>
+        </tr>
+        <tr>
+            <td>Cedric</td>
+            <td>Diggory</td>
+            <td>Hufflepuff</td>
+            <td>Vuelo</td>
+            <td>200</td>
+        </tr>
+    </table>
+    <footer style="background-color: rgb(1, 1, 136);">
+        <p class="footer">&copy;2023 HOGWARTS,S.A.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso HTML</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+            background-image: url(fondo.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        h1 {
+            background-color: rgb(133, 57, 204);
+            color: yellowgreen;
+            text-align: center;
+        }
+
+        .indice {
+            display: flex;
+            background-color: rgb(0, 0, 0);
+            margin: 20px;
+            justify-content: center;
+        }
+
+        header .indice ul {
+            list-style: none;
+            display: flex;
+            margin: 10;
+            padding: 5;
+            justify-content: left;
+            color: #fff;
+        }
+
+        header .indice ul li {
+            margin-right: 15px;
+            color: #fff;
+        }
+
+        .indice a {
+            text-decoration: none;
+            color: rgb(133, 57, 204);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.5s ease;
+        }
+
+        .indice a:hover {
+            color: white;
+            background-color: #ffc40093;
+
+        }
+
+        footer {
+            color: aliceblue;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: left;
+            padding: 10px;
+        }
+
+        form {
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>COUNTER STRIKE</h1>
+            <nav class="indice">
+                <ul>
+                  <li><a href="index.html">Inicio</a></li>
+                </ul>
+                <ul>
+                    <li><a href="SobreElTema.html">Sobre el tema</a></li>
+                </ul>
+                <ul>
+                    <li><a href="Galeria.html">Galería</a></li>
+                </ul>
+                <ul>
+                    <li><a href="Contacto.html">Contacto</a></li>
+                </ul>
+              </nav>
+    </header>
+    <hr>
+    <main>
+        <form action="Contacto.html" method="post">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
+            <br><br>
+
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+            <br><br>
+
+            <label for="phone">Teléfono:</label>
+            <input type="number" id="phone" name="phone" required>
+            <br><br>
+
+            <label for="reason">Motivo de contacto:</label>
+            <select id="reason" name="reason" required>
+                <option value="consulta">Consulta</option>
+                <option value="soporte">Soporte</option>
+                <option value="otros">Otros</option>
+            </select>
+            <br><br>
+
+            <label for="comments">Comentarios:</label>
+            <br>
+            <textarea id="comments" name="comments" rows="4" cols="50" required></textarea><br><br>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2023 Javier Manzano Oliveros. Todos los derechos reservados.</p>
+    </footer>
+</body>
+
+</html>
