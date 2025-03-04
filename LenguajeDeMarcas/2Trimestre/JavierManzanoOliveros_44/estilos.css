@@ -1,0 +1,64 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-color: none;
+    background-color: beige;
+}
+
+.anillo {
+    transform: translateX(150px);
+}
+
+.hobbits {
+    width: 20%;
+    background-color: #eee;
+    text-align: center;
+    font-weight: bold;
+    border-collapse: collapse;
+    border: none;
+}
+
+.primera {
+    width: 80%;
+    font-size: 2em;
+    background-color: beige;
+    text-align: center;
+    font-weight: bold;
+    color: darkred;
+}
+
+.razas {
+    background-color: rgb(244, 252, 252);
+}
+
+.razas li {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    color: blue;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    font-weight: bold;
+}
+
+a {
+    color: rgb(0, 14, 139);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+tfoot {
+    text-align: center;
+    background-color: beige;
+}
