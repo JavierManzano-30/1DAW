@@ -1,0 +1,11 @@
+td {
+    background-color: rgb(66, 66, 252);
+    color: white;
+    text-align: center;
+    width: 100px;
+}
+
+td:hover,
+td:focus {
+    border: solid 1px red;
+}

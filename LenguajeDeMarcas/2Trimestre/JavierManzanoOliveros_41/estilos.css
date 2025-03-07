@@ -1,0 +1,51 @@
+div {
+    display: flex;
+}
+
+section {
+    margin: 30px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.escuelas {
+    list-style: square;
+}
+
+.primero {
+    list-style: ethiopic-numeric;
+}
+
+.principes {
+    list-style: circle;
+}
+
+.segundo{
+    list-style: kannada;
+}
+
+.hobbits {
+    list-style: katakana;
+}
+
+.tercero {
+    list-style: georgian;
+}
+
+.marvel {
+    list-style: hebrew;
+}
+
+.cuarto {
+    list-style: lower-alpha;
+}
+
+.dc {
+    list-style: decimal-leading-zero;
+}
+
+.quinto {
+    list-style: trad-chinese-informal;
+}
