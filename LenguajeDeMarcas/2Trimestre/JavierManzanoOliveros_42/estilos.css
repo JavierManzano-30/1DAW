@@ -1,0 +1,21 @@
+table {
+    border: 2px solid;
+    width: 200px;
+    table-layout: fixed;
+    border-spacing: 30px 10px;
+    
+}
+
+td {
+    border: 2px solid;
+    width: 200px;
+}
+
+td:empty,
+td:empty+td {
+    display: none;
+}
+
+caption {
+    caption-side: bottom;
+}

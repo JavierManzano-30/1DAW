@@ -1,0 +1,48 @@
+h1 {
+    text-align: center;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+caption {
+    caption-side: bottom;
+    font-size: 20px;
+    padding: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #009688;
+    color: #fff;
+}
+
+tr:nth-child(odd) td {
+    background-color: #f2f2f2;
+}
+
+tr:hover td {
+    background-color: #c7e2e0;
+}
+
+td:nth-child(3)::after {
+    content: '€';
+}
+
+tr td:nth-child(1),
+tr th:nth-child(1) {
+    background-color: #009688;
+    color: #fff;
+}
