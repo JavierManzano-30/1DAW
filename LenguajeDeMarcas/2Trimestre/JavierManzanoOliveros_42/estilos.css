@@ -3,7 +3,6 @@ table {
     width: 200px;
     table-layout: fixed;
     border-spacing: 30px 10px;
-    
 }
 
 td {
@@ -11,11 +10,15 @@ td {
     width: 200px;
 }
 
-td:empty,
-td:empty+td {
+td:empty {
     display: none;
 }
 
 caption {
     caption-side: bottom;
+}
+
+td.estaSeMueve {
+    position: relative;
+    left: 118px; 
 }
