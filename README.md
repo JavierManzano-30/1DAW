@@ -25,8 +25,9 @@ El repositorio está organizado en carpetas según las asignaturas y proyectos d
 │-- 📂 Programación
 │-- 📂 Entornos de Desarrollo
 │-- 📂 Base de Datos
-│-- 📂 Frameworks y Librerías
-│-- 📂 Proyectos Finales
+│-- 📂 Sistemas Informaticos
+│-- 📂 Sostenibilidad
+│-- 📂 AP
 ```
 
 Cada carpeta contiene sus respectivos archivos y proyectos desarrollados en la materia correspondiente.
@@ -45,7 +46,7 @@ Cada carpeta contiene sus respectivos archivos y proyectos desarrollados en la m
 Si deseas clonar este repositorio para explorar los proyectos en tu equipo, sigue estos pasos:
 
 ```bash
-git clone https://github.com/tu-usuario/1DAW.git
+git clone https://github.com/JavierManzano-30/1DAW
 ```
 
 Luego, navega por las carpetas y abre los archivos en tu editor de código favorito.
@@ -54,9 +55,9 @@ Luego, navega por las carpetas y abre los archivos en tu editor de código favor
 
 ## 📬 Contacto
 Si tienes dudas, sugerencias o simplemente quieres conectar conmigo, puedes encontrarme en:
-- 📧 Email: [tu-email@example.com](mailto:tu-email@example.com)
+- 📧 Email: javier.manzanooliveros@adaits.es
 - 🐦 Twitter: [@tu_usuario](https://twitter.com/tu_usuario)
-- 💼 LinkedIn: [tu perfil](https://www.linkedin.com/in/tu-perfil)
+- 💼 LinkedIn: https://www.linkedin.com/in/javier-manzano-410564172
 
 ¡Gracias por visitar mi repositorio! 🚀
 
