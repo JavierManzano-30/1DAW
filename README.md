@@ -56,7 +56,7 @@ Luego, navega por las carpetas y abre los archivos en tu editor de código favor
 ## 📬 Contacto
 Si tienes dudas, sugerencias o simplemente quieres conectar conmigo, puedes encontrarme en:
 - 📧 Email: javier.manzanooliveros@adaits.es
-- 🐦 Twitter: [@tu_usuario](https://twitter.com/tu_usuario)
+- 🐦 Twitter: https://x.com/JManzanoO30
 - 💼 LinkedIn: https://www.linkedin.com/in/javier-manzano-410564172
 
 ¡Gracias por visitar mi repositorio! 🚀
