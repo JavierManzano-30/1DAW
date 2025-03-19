@@ -1,0 +1,47 @@
+.contenedor {
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    margin: 20px;
+}
+
+.caja {
+    width: 200px;
+    height: 150px;
+    position: absolute;
+}
+
+.verde{
+    background-color: green;
+    top: 70px;
+    left: 100px;
+    z-index: 1;
+}
+
+.amarilla {
+    background-color: yellow;
+    top: 80px;
+    left: 280px;
+    z-index: 2;
+}
+
+.azul {
+    background-color: blue;
+    top: 130px;
+    left: 150px;
+    z-index: 3;
+}
+
+.rojo {
+    background-color: red;
+    top: 30px;
+    left: 45px;
+    z-index: 4;
+}
+
+.purpura {
+    background-color: blueviolet;
+    top: 210px;
+    left: 110px;
+    z-index: 5;
+}

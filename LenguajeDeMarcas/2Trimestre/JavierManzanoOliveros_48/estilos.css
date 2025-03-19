@@ -2,39 +2,36 @@ h1 {
     background-color: #e1f4fc;
     padding: 20px;
     font-weight: bold;
-    position: sticky;
+    position: static;
     top: 0;
 }
 
-.relative-element {
+.relative {
     position: relative;
     left: 50px;
     border: 2px dotted purple;
     width: 800px;
 }
 
-.fixed-element {
+.fixed {
     position: fixed;
     width: 100px;
     height: 100px;
+    border-radius: 50px;
     background-color: green;
     color: white;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     margin-top: 15px;
+    bottom: 300px;
+    right: 600px;
 }
 
-.absolute-element {
+.absolute {
     position: absolute;
     top: 60px;
     left: 300px;
     width: 200px;
     height: 80px;
     border: 3px solid blue;
+    background-color: rgb(203, 203, 255);
 }
-
-
-
-
