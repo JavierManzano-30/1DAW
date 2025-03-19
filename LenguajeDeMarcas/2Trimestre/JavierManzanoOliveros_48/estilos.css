@@ -1,0 +1,40 @@
+h1 {
+    background-color: #e1f4fc;
+    padding: 20px;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+}
+
+.relative-element {
+    position: relative;
+    left: 50px;
+    border: 2px dotted purple;
+    width: 800px;
+}
+
+.fixed-element {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    color: white;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.absolute-element {
+    position: absolute;
+    top: 60px;
+    left: 300px;
+    width: 200px;
+    height: 80px;
+    border: 3px solid blue;
+}
+
+
+
+
