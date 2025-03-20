@@ -8,7 +8,6 @@ Bienvenido a mi repositorio **1DAW** 📂. Aquí encontrarás todos los trabajos
 A lo largo de este primer año, estaré trabajando con diversas tecnologías y lenguajes, incluyendo:
 
 - 🖥️ **HTML5** y **CSS3**
-- 🎨 **SASS / Bootstrap / TailwindCSS**
 - 🏗️ **Java**
 - 🗄️ **Bases de Datos**
 - 🌍 **PHP** y **Laravel**
