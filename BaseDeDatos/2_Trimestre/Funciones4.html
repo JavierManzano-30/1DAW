@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Funciones en SQL: Guía Teórica y Práctica</title>
+    <style>
+        /* Estilos sencillos con colores suaves y buena legibilidad */
+
+        body {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            /* Fondo claro */
+            color: #333333;
+            /* Texto oscuro */
+            line-height: 1.5;
+        }
+
+        h1,
+        h2 {
+            color: #2b6cb0;
+            /* Azul suave y contrastante */
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            margin-top: 0;
+            border-bottom: 1px solid #2b6cb0;
+            padding-bottom: 5px;
+        }
+
+        .section {
+            background-color: #ffffff;
+            /* Fondo blanco para secciones */
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #eeeeee;
+            border-radius: 5px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 10px;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+            color: #333333;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Funciones en SQL: Guía Teórica y Práctica</h1>
+
+    <div class="section">
+        <p>
+            En SQL, una <strong>función</strong> es un bloque de código que realiza
+            una tarea específica y retorna un valor. Hay varios tipos:
+        </p>
+        <ul>
+            <li>
+                <strong>Funciones escalares:</strong> devuelven un valor por cada
+                fila.
+            </li>
+            <li>
+                <strong>Funciones de agregado:</strong> procesan un conjunto de filas
+                y devuelven un único valor (p.ej. <code>SUM</code>,
+                <code>COUNT</code>, <code>AVG</code>).
+            </li>
+            <li>
+                <strong>Funciones de ventana:</strong> similares a las de agregado,
+                pero no condensan los resultados en una sola fila (p.ej.
+                <code>ROW_NUMBER</code>).
+            </li>
+            <li>
+                <strong>Funciones definidas por el usuario (UDF):</strong> creadas por
+                ti para resolver necesidades específicas.
+            </li>
+        </ul>
+    </div>
+
+    <h2>1. Funciones de Agregado</h2>
+    <div class="section">
+        <p>
+            Procesan múltiples filas y devuelven un solo valor. A menudo se usan con
+            <code>GROUP BY</code> y <code>HAVING</code>.
+        </p>
+        <pre><code>-- Contar filas
+SELECT COUNT(*) AS total_filas
+FROM tabla;
+
+-- Sumar valores
+SELECT SUM(precio) AS total
+FROM productos;
+
+-- Calcular promedio
+SELECT AVG(edad) AS promedio
+FROM personas;
+
+-- Encontrar mínimo
+SELECT MIN(salario) AS minimo
+FROM empleados;
+
+-- Encontrar máximo
+SELECT MAX(salario) AS maximo
+FROM empleados;
+</code></pre>
+        <p><strong>Ejemplo adicional:</strong></p>
+        <pre><code>SELECT departamento,
+       COUNT(*) AS total_empleados,
+       AVG(salario) AS prom_salarial
+FROM empleados
+GROUP BY departamento
+HAVING AVG(salario) > 3000;
+</code></pre>
+    </div>
+
+    <h2>2. Funciones Numéricas</h2>
+    <div class="section">
+        <pre><code>ABS(x)      -- Valor absoluto
+CEILING(x) -- Redondea hacia arriba
+FLOOR(x)   -- Redondea hacia abajo
+ROUND(x,d) -- Redondea con d decimales
+POWER(x,y) -- x elevado a y
+SQRT(x)    -- Raíz cuadrada de x
+
+-- Ejemplos:
+SELECT ABS(-10);          -- 10
+SELECT CEILING(4.2);      -- 5
+SELECT FLOOR(4.9);        -- 4
+SELECT ROUND(3.1415, 2);  -- 3.14
+SELECT POWER(2, 3);       -- 8
+SELECT SQRT(16);          -- 4
+</code></pre>
+    </div>
+
+    <h2>3. Funciones de Cadena</h2>
+    <div class="section">
+        <pre><code>LOWER('TEXTO') / LCASE('TEXTO')  -- A minúsculas
+UPPER('texto') / UCASE('texto')  -- A mayúsculas
+SUBSTRING('Hola Mundo', 1, 4)    -- 'Hola'
+LEFT('SQL', 2) / RIGHT('SQL', 2) -- 'SQ' / 'QL'
+LTRIM('   Hola') / RTRIM('Hola   ')
+REPLACE('Hola Mundo','Mundo','SQL')
+CONCAT('Hola',' ','Mundo')       -- 'Hola Mundo'
+</code></pre>
+    </div>
+
+    <h2>4. Funciones de Fecha y Hora</h2>
+    <div class="section">
+        <pre><code>NOW() / GETDATE() / CURRENT_TIMESTAMP 
+  -- Retorna fecha y hora actual
+
+CURDATE() / CURRENT_DATE
+  -- Retorna la fecha actual (sin hora)
+
+DATEADD(...) / DATE_ADD(...)
+  -- Suma un intervalo de tiempo a una fecha
+
+DATEDIFF(fecha1, fecha2)
+  -- Diferencia en días entre dos fechas
+
+EXTRACT(...) / DATEPART(...)
+  -- Extrae parte específica (año, mes, día, etc.)
+</code></pre>
+    </div>
+
+    <h2>5. Funciones Lógicas y de Control</h2>
+    <div class="section">
+        <pre><code>CASE
+  WHEN condicion1 THEN ...
+  WHEN condicion2 THEN ...
+  ELSE ...
+END
+
+COALESCE(v1, v2, ..., vN)
+  -- Devuelve el primer valor NO NULL
+
+NULLIF(exp1, exp2)
+  -- Devuelve NULL si exp1 = exp2, de lo contrario exp1
+</code></pre>
+    </div>
+
+    <h2>6. Funciones de Ventana</h2>
+    <div class="section">
+        <p>
+            No agrupan todo en una fila única, sino que aplican cálculos por
+            “ventanas” o particiones. Ejemplo:
+        </p>
+        <pre><code>SELECT empleado_id,
+       departamento,
+       salario,
+       ROW_NUMBER() OVER (PARTITION BY departamento
+                          ORDER BY salario DESC) AS posicion
+FROM empleados;
+</code></pre>
+    </div>
+
+    <h2>7. Funciones Definidas por el Usuario (UDF)</h2>
+    <div class="section">
+        <p><strong>Ejemplo en SQL Server:</strong></p>
+        <pre><code>CREATE FUNCTION fn_CalcularIVA
+(
+  @precio DECIMAL(10,2), 
+  @tasa   DECIMAL(5,2)
+)
+RETURNS DECIMAL(10,2)
+AS
+BEGIN
+  DECLARE @iva DECIMAL(10,2);
+  SET @iva = @precio * @tasa;
+  RETURN @iva;
+END;
+
+SELECT dbo.fn_CalcularIVA(100, 0.21); -- 21.00
+</code></pre>
+        <p><strong>Ejemplo en MySQL:</strong></p>
+        <pre><code>DELIMITER $$
+CREATE FUNCTION fn_calcularIVA(precio DECIMAL(10,2), tasa DECIMAL(5,2))
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+  DECLARE valorIVA DECIMAL(10,2);
+  SET valorIVA = precio * tasa;
+  RETURN valorIVA;
+END $$
+DELIMITER ;
+
+SELECT fn_calcularIVA(100, 0.21); -- 21.00
+</code></pre>
+    </div>
+
+    <h2>8. Ejemplos Prácticos</h2>
+    <div class="section">
+        <p><strong>Creación de tabla y datos (MySQL):</strong></p>
+        <pre><code>CREATE DATABASE mi_basedatos;
+USE mi_basedatos;
+
+CREATE TABLE empleados (
+  empleado_id INT PRIMARY KEY,
+  nombre VARCHAR(50),
+  departamento VARCHAR(50),
+  salario DECIMAL(10,2),
+  fecha_ingreso DATE
+);
+
+INSERT INTO empleados (empleado_id, nombre, departamento, salario, fecha_ingreso)
+VALUES
+(1, 'Ana', 'Contabilidad', 2500.00, '2022-01-15'),
+(2, 'Juan', 'Ventas',       1800.00, '2021-11-10'),
+(3, 'Pedro','Contabilidad', 3200.00, '2019-06-01'),
+(4, 'Maria','Ventas',       5000.00, '2020-02-20'),
+(5, 'Lucia','IT',           4000.00, '2021-08-30');
+</code></pre>
+        <p><strong>Consultas básicas:</strong></p>
+        <pre><code>-- Funciones de agregado
+SELECT COUNT(*) AS total_emp,
+       AVG(salario) AS promedio,
+       MIN(salario) AS minimo,
+       MAX(salario) AS maximo
+FROM empleados;
+
+-- Funciones de cadena
+SELECT UPPER(nombre) AS mayus,
+       LOWER(departamento) AS minus
+FROM empleados;
+
+-- Funciones de fecha (MySQL)
+SELECT nombre,
+       DATEDIFF(CURRENT_DATE, fecha_ingreso) AS dias
+FROM empleados;
+
+-- CASE y ROUND
+SELECT nombre,
+       salario,
+       ROUND(salario * 1.10, 2) AS aumento_10,
+       CASE
+         WHEN salario < 2000 THEN 'Bajo'
+         WHEN salario BETWEEN 2000 AND 4000 THEN 'Medio'
+         ELSE 'Alto'
+       END AS categoria
+FROM empleados;
+
+-- Funciones de ventana (si tu SGBD las soporta)
+SELECT empleado_id,
+       departamento,
+       salario,
+       ROW_NUMBER() OVER (PARTITION BY departamento ORDER BY salario DESC) AS ranking
+FROM empleados;
+</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Consejos Generales</h2>
+        <ul>
+            <li>
+                <strong>Compatibilidad:</strong> la sintaxis puede variar según el
+                SGBD (MySQL, SQL Server, Oracle, PostgreSQL...).
+            </li>
+            <li>
+                <strong>Manual oficial:</strong> revisa siempre la documentación
+                exacta.
+            </li>
+            <li>
+                <strong>Rendimiento:</strong> usar funciones sobre columnas en
+                <code>WHERE</code> puede desactivar índices y ralentizar consultas.
+            </li>
+            <li>
+                <strong>Organización:</strong> separa la creación de tablas, inserción
+                de datos y consultas en tu proyecto.
+            </li>
+            <li>
+                <strong>Ejemplos reales:</strong> para trabajos académicos, es útil
+                tener datos cercanos a la realidad.
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <p>
+            <strong>Diseñado por:</strong>
+            &copyJavier Manzano
+        </p>
+    </div>
+</body>
+
+</html>
