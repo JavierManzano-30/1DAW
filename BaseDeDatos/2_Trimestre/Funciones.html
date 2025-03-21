@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Funciones en SQL: Guía Teórica y Práctica</title>
+
+  <!-- Bootstrap 5 CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Estilos personalizados -->
+  <style>
+    /* Paleta de colores inspirada en SQL (rojo intenso característico de SQL Server) */
+    :root {
+      --sql-primary: #cc2927;
+      /* Color principal tipo "SQL" */
+      --sql-secondary: #eaeaea;
+      /* Gris muy claro para fondo */
+      --sql-code-bg: #f8f8f8;
+      /* Fondo para bloques de código */
+      --sql-text-dark: #333;
+      /* Texto oscuro */
+    }
+
+    /* Fondo y tipografía base */
+    body {
+      background-color: var(--sql-secondary);
+      color: var(--sql-text-dark);
+    }
+
+    /* Cabecera (menú superior) fija arriba */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #cc2927;
+      /* Color tipo "SQL" */
+      color: #ffffff;
+      padding: 10px 0;
+      z-index: 9999;
+      /* Para que quede por encima del contenido */
+    }
+
+    /* Contenedor del menú */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Quitar bordes redondeados para esquinas cuadradas */
+    .card,
+    .accordion-button,
+    .btn-link,
+    .accordion-item,
+    .form-control,
+    .btn,
+    .input-group-text,
+    .collapse.show {
+      border-radius: 0 !important;
+    }
+
+    /* Encabezados con color principal */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      color: var(--sql-primary);
+    }
+
+    /* Subrayar la sección de títulos a modo de detalle minimalista */
+    h1 {
+      border-bottom: 2px solid var(--sql-primary);
+      padding-bottom: 0.3rem;
+    }
+
+    /* Bloques de código con fondo claro y borde */
+    pre code {
+      background-color: var(--sql-code-bg);
+      border: 1px solid #ddd;
+      display: block;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.3;
+      white-space: pre;
+    }
+
+    /* Acordeones: estado expandido con color principal */
+    .accordion-button:not(.collapsed) {
+      background-color: var(--sql-primary);
+      color: #fff;
+    }
+
+    /* Efecto hover de cada item */
+    .accordion-button:hover {
+      background-color: #b6201e;
+      color: #fff;
+    }
+
+    .section-block {
+      background-color: #ffffff;
+      padding: 15px;
+      margin-bottom: 10px;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Margen entre secciones */
+    .section-spacing {
+      margin-top: 3rem;
+    }
+
+    .mb-2 {
+      margin-bottom: 0.5rem !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Menú superior fijo -->
+  <header>
+    <nav>
+      <a href="#introduccion">Inicio</a>
+      <a href="#agregado">Agregado</a>
+      <a href="#numericas">Numéricas</a>
+      <a href="#cadenas">Cadenas</a>
+      <a href="#fechas">Fechas</a>
+      <a href="#logicas">Lógicas</a>
+      <a href="#ventana">Ventana</a>
+      <a href="#udf">UDF</a>
+      <a href="#ejemplos">Ejemplos</a>
+      <a href="#consejos">Consejos</a>
+    </nav>
+  </header>
+
+  <br>
+  <div class="container my-4">
+    <!-- Título principal -->
+    <h1 class="text-center mb-4" id="introduccion">
+      Funciones en SQL: Guía Teórica y Práctica
+    </h1>
+
+    <!-- Sección: Introducción -->
+    <div class="mb-4">
+      <p>
+        En SQL, una <strong>función</strong> es un bloque de código que
+        realiza una tarea específica y retorna un valor. Hay varios tipos de
+        funciones, pero comúnmente se dividen en:
+      </p>
+      <ul>
+        <li>
+          <strong>Funciones escalares</strong> (devuelven un único valor por
+          fila).
+        </li>
+        <li>
+          <strong>Funciones de agregado</strong> (efectúan cálculos sobre un
+          conjunto de filas y devuelven un único resultado).
+        </li>
+        <li>
+          <strong>Funciones de ventana</strong> (similares a las de agregado,
+          pero no “colapsan” las filas en un solo valor; permiten operaciones
+          por “ventanas” o particiones de filas).
+        </li>
+      </ul>
+      <p>
+        Además, existen
+        <strong>Funciones definidas por el usuario (UDF)</strong>, que pueden
+        ser Escalares o de Tabla, según retornen un solo valor o un conjunto
+        de resultados tipo tabla. A continuación, se presentan ejemplos de las
+        funciones más comunes en SQL, cada una con su propia sección
+        desplegable para:
+      </p>
+      <ul>
+        <li><em>Descripción y código</em></li>
+        <li><em>Resultado de ejemplo</em> (en un segundo desplegable)</li>
+      </ul>
+    </div>
+
+    <!-- ========================= -->
+    <!-- 1. Funciones de Agregado -->
+    <!-- ========================= -->
+    <h2 class="section-spacing" id="agregado">
+      1. Funciones de Agregado (Aggregate Functions)
+    </h2>
+    <p class="text-muted">
+      Se aplican sobre un conjunto de filas y devuelven un solo valor. Suelen
+      usarse con <code>GROUP BY</code> y <code>HAVING</code>.
+    </p>
+
+    <div class="accordion mb-4" id="accordionAggregate">
+      <!-- COUNT() -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingCount">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseCount" aria-expanded="false" aria-controls="collapseCount">
+            COUNT()
+          </button>
+        </h2>
+        <div id="collapseCount" class="accordion-collapse collapse" aria-labelledby="headingCount"
+          data-bs-parent="#accordionAggregate">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Retorna el número de filas que coinciden con la condición especificada
+SELECT COUNT(*) AS total_filas
+FROM tabla_ejemplo;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#countExample" aria-expanded="false" aria-controls="countExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="countExample">
+              <pre><code>/*
+Posible resultado:
++--------------+
+| total_filas  |
++--------------+
+| 12           |
++--------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /COUNT -->
+
+      <!-- SUM() -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSum">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseSum" aria-expanded="false" aria-controls="collapseSum">
+            SUM()
+          </button>
+        </h2>
+        <div id="collapseSum" class="accordion-collapse collapse" aria-labelledby="headingSum"
+          data-bs-parent="#accordionAggregate">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Devuelve la suma de los valores de una columna numérica
+SELECT SUM(precio) AS suma_precios
+FROM productos;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#sumExample" aria-expanded="false" aria-controls="sumExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="sumExample">
+              <pre><code>/*
+Posible resultado:
++---------------+
+| suma_precios  |
++---------------+
+| 2530.5        |
++---------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /SUM -->
+
+      <!-- AVG() -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingAvg">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseAvg" aria-expanded="false" aria-controls="collapseAvg">
+            AVG()
+          </button>
+        </h2>
+        <div id="collapseAvg" class="accordion-collapse collapse" aria-labelledby="headingAvg"
+          data-bs-parent="#accordionAggregate">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Calcula el promedio (media) de los valores de una columna numérica
+SELECT AVG(edad) AS promedio_edad
+FROM personas;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#avgExample" aria-expanded="false" aria-controls="avgExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="avgExample">
+              <pre><code>/*
+Posible resultado:
++------------------+
+| promedio_edad    |
++------------------+
+| 32.4             |
++------------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /AVG -->
+
+      <!-- MIN() -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingMin">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseMin" aria-expanded="false" aria-controls="collapseMin">
+            MIN()
+          </button>
+        </h2>
+        <div id="collapseMin" class="accordion-collapse collapse" aria-labelledby="headingMin"
+          data-bs-parent="#accordionAggregate">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Devuelve el valor mínimo de una columna
+SELECT MIN(salario) AS salario_minimo
+FROM empleados;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#minExample" aria-expanded="false" aria-controls="minExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="minExample">
+              <pre><code>/*
+Posible resultado:
++-----------------+
+| salario_minimo  |
++-----------------+
+| 1500.00         |
++-----------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /MIN -->
+
+      <!-- MAX() -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingMax">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseMax" aria-expanded="false" aria-controls="collapseMax">
+            MAX()
+          </button>
+        </h2>
+        <div id="collapseMax" class="accordion-collapse collapse" aria-labelledby="headingMax"
+          data-bs-parent="#accordionAggregate">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Devuelve el valor máximo de una columna
+SELECT MAX(salario) AS salario_maximo
+FROM empleados;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#maxExample" aria-expanded="false" aria-controls="maxExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="maxExample">
+              <pre><code>/*
+Posible resultado:
++-----------------+
+| salario_maximo  |
++-----------------+
+| 5000.00         |
++-----------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /MAX -->
+    </div>
+    <!-- /accordionAggregate -->
+
+    <!-- Ejemplo extra con GROUP BY y HAVING -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <p><strong>Ejemplo adicional con GROUP BY y HAVING:</strong></p>
+        <pre><code>SELECT departamento,
+       COUNT(*) AS total_empleados,
+       AVG(salario) AS salario_promedio
+FROM empleados
+GROUP BY departamento
+HAVING AVG(salario) > 3000;
+
+/*
+Posible resultado (dependiendo de los datos):
++---------------+------------------+-------------------+
+| departamento  | total_empleados | salario_promedio  |
++---------------+------------------+-------------------+
+| Contabilidad  | 2                | 2850.00           |
+| Ventas        | 2                | 3400.00           |
++---------------+------------------+-------------------+
+*/
+</code></pre>
+      </div>
+    </div>
+
+    <!-- ========================== -->
+    <!-- 2. Funciones Numéricas    -->
+    <!-- ========================== -->
+    <h2 class="section-spacing" id="numericas">2. Funciones Numéricas</h2>
+    <p class="text-muted">
+      Operan sobre columnas numéricas y devuelven un valor por cada fila.
+    </p>
+
+    <div class="accordion mb-4" id="accordionNumeric">
+      <!-- ABS() -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingAbs">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseAbs" aria-expanded="false" aria-controls="collapseAbs">
+            ABS()
+          </button>
+        </h2>
+        <div id="collapseAbs" class="accordion-collapse collapse" aria-labelledby="headingAbs"
+          data-bs-parent="#accordionNumeric">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Devuelve el valor absoluto de x
+SELECT ABS(-15) AS absoluto;  -- Resultado: 15
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#absExample" aria-expanded="false" aria-controls="absExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="absExample">
+              <pre><code>/*
++----------+
+| absoluto |
++----------+
+| 15       |
++----------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /ABS -->
+
+      <!-- CEILING() / CEIL() -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingCeil">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseCeil" aria-expanded="false" aria-controls="collapseCeil">
+            CEILING() / CEIL()
+          </button>
+        </h2>
+        <div id="collapseCeil" class="accordion-collapse collapse" aria-labelledby="headingCeil"
+          data-bs-parent="#accordionNumeric">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Redondea x hacia arriba al entero más cercano
+SELECT CEILING(4.3) AS techo;  -- Resultado: 5
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#ceilExample" aria-expanded="false" aria-controls="ceilExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="ceilExample">
+              <pre><code>/*
++-------+
+| techo |
++-------+
+| 5     |
++-------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /CEILING -->
+
+      <!-- FLOOR() -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFloor">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFloor" aria-expanded="false" aria-controls="collapseFloor">
+            FLOOR()
+          </button>
+        </h2>
+        <div id="collapseFloor" class="accordion-collapse collapse" aria-labelledby="headingFloor"
+          data-bs-parent="#accordionNumeric">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Redondea x hacia abajo al entero más cercano
+SELECT FLOOR(4.9) AS piso; -- Resultado: 4
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#floorExample" aria-expanded="false" aria-controls="floorExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="floorExample">
+              <pre><code>/*
++------+
+| piso |
++------+
+| 4    |
++------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /FLOOR -->
+
+      <!-- ROUND() -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingRound">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseRound" aria-expanded="false" aria-controls="collapseRound">
+            ROUND()
+          </button>
+        </h2>
+        <div id="collapseRound" class="accordion-collapse collapse" aria-labelledby="headingRound"
+          data-bs-parent="#accordionNumeric">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Redondea x al número de decimales especificado
+SELECT ROUND(123.4567, 2) AS redondeado; 
+-- Resultado: 123.46
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#roundExample" aria-expanded="false" aria-controls="roundExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="roundExample">
+              <pre><code>/*
++--------------+
+| redondeado   |
++--------------+
+| 123.46       |
++--------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /ROUND -->
+
+      <!-- POWER() -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingPower">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapsePower" aria-expanded="false" aria-controls="collapsePower">
+            POWER()
+          </button>
+        </h2>
+        <div id="collapsePower" class="accordion-collapse collapse" aria-labelledby="headingPower"
+          data-bs-parent="#accordionNumeric">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Retorna x elevado a la potencia y
+SELECT POWER(2, 3) AS potencia; -- Resultado: 8
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#powerExample" aria-expanded="false" aria-controls="powerExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="powerExample">
+              <pre><code>/*
++----------+
+| potencia |
++----------+
+| 8        |
++----------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /POWER -->
+
+      <!-- SQRT() -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSqrt">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseSqrt" aria-expanded="false" aria-controls="collapseSqrt">
+            SQRT()
+          </button>
+        </h2>
+        <div id="collapseSqrt" class="accordion-collapse collapse" aria-labelledby="headingSqrt"
+          data-bs-parent="#accordionNumeric">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Devuelve la raíz cuadrada de x
+SELECT SQRT(16) AS raiz; -- Resultado: 4
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#sqrtExample" aria-expanded="false" aria-controls="sqrtExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="sqrtExample">
+              <pre><code>/*
++------+
+| raiz |
++------+
+| 4    |
++------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /SQRT -->
+    </div>
+    <!-- /accordionNumeric -->
+
+    <!-- =========================== -->
+    <!-- 3. Funciones de Cadena     -->
+    <!-- =========================== -->
+    <h2 class="section-spacing" id="cadenas">3. Funciones de Cadena</h2>
+    <p class="text-muted">Permiten manipular texto y transformarlo.</p>
+
+    <div class="accordion mb-4" id="accordionString">
+      <!-- LOWER / LCASE -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingLower">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseLower" aria-expanded="false" aria-controls="collapseLower">
+            LOWER() / LCASE()
+          </button>
+        </h2>
+        <div id="collapseLower" class="accordion-collapse collapse" aria-labelledby="headingLower"
+          data-bs-parent="#accordionString">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Convierte la cadena a minúsculas
+SELECT LOWER('HOLA MUNDO') AS minusculas;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#lowerExample" aria-expanded="false" aria-controls="lowerExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="lowerExample">
+              <pre><code>/*
++-------------+
+| minusculas  |
++-------------+
+| hola mundo  |
++-------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /LOWER -->
+
+      <!-- UPPER / UCASE -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingUpper">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseUpper" aria-expanded="false" aria-controls="collapseUpper">
+            UPPER() / UCASE()
+          </button>
+        </h2>
+        <div id="collapseUpper" class="accordion-collapse collapse" aria-labelledby="headingUpper"
+          data-bs-parent="#accordionString">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Convierte la cadena a mayúsculas
+SELECT UPPER('hola mundo') AS mayusculas;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#upperExample" aria-expanded="false" aria-controls="upperExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="upperExample">
+              <pre><code>/*
++-------------+
+| mayusculas  |
++-------------+
+| HOLA MUNDO  |
++-------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /UPPER -->
+
+      <!-- SUBSTRING / SUBSTR -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSubstring">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseSubstring" aria-expanded="false" aria-controls="collapseSubstring">
+            SUBSTRING() / SUBSTR()
+          </button>
+        </h2>
+        <div id="collapseSubstring" class="accordion-collapse collapse" aria-labelledby="headingSubstring"
+          data-bs-parent="#accordionString">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Retorna una parte de la cadena
+SELECT SUBSTRING('Hola Mundo', 1, 4) AS sub_cadena; 
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#substringExample" aria-expanded="false" aria-controls="substringExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="substringExample">
+              <pre><code>/*
++------------+
+| sub_cadena |
++------------+
+| Hola       |
++------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /SUBSTRING -->
+
+      <!-- LEFT / RIGHT -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingLeftRight">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseLeftRight" aria-expanded="false" aria-controls="collapseLeftRight">
+            LEFT() / RIGHT()
+          </button>
+        </h2>
+        <div id="collapseLeftRight" class="accordion-collapse collapse" aria-labelledby="headingLeftRight"
+          data-bs-parent="#accordionString">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Devuelve los primeros (LEFT) o últimos (RIGHT) n caracteres
+SELECT LEFT('Hola Mundo', 4) AS primeros4; 
+SELECT RIGHT('Hola Mundo', 5) AS ultimos5;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#leftRightExample" aria-expanded="false" aria-controls="leftRightExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="leftRightExample">
+              <pre><code>/*
+Primer query:
++-------------+
+| primeros4   |
++-------------+
+| Hola        |
++-------------+
+
+Segundo query:
++------------+
+| ultimos5   |
++------------+
+| Mundo      |
++------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /LEFT/RIGHT -->
+
+      <!-- LTRIM / RTRIM -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTrim">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseTrim" aria-expanded="false" aria-controls="collapseTrim">
+            LTRIM() / RTRIM()
+          </button>
+        </h2>
+        <div id="collapseTrim" class="accordion-collapse collapse" aria-labelledby="headingTrim"
+          data-bs-parent="#accordionString">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Elimina espacios en blanco al principio (LTRIM) o al final (RTRIM)
+SELECT LTRIM('   Hola') AS sin_espacios_inicio;
+SELECT RTRIM('Hola   ') AS sin_espacios_final;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#trimExample" aria-expanded="false" aria-controls="trimExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="trimExample">
+              <pre><code>/*
+LTRIM:
++----------------------+
+| sin_espacios_inicio |
++----------------------+
+| Hola                |
++----------------------+
+
+RTRIM:
++---------------------+
+| sin_espacios_final |
++---------------------+
+| Hola               |
++---------------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /LTRIM/RTRIM -->
+
+      <!-- REPLACE -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingReplace">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseReplace" aria-expanded="false" aria-controls="collapseReplace">
+            REPLACE()
+          </button>
+        </h2>
+        <div id="collapseReplace" class="accordion-collapse collapse" aria-labelledby="headingReplace"
+          data-bs-parent="#accordionString">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Reemplaza todas las ocurrencias de 'buscar' en la cadena
+SELECT REPLACE('Hola Mundo', 'Mundo', 'SQL') AS nuevo_texto;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#replaceExample" aria-expanded="false" aria-controls="replaceExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="replaceExample">
+              <pre><code>/*
++-------------+
+| nuevo_texto |
++-------------+
+| Hola SQL    |
++-------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /REPLACE -->
+
+      <!-- CONCAT -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingConcat">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseConcat" aria-expanded="false" aria-controls="collapseConcat">
+            CONCAT()
+          </button>
+        </h2>
+        <div id="collapseConcat" class="accordion-collapse collapse" aria-labelledby="headingConcat"
+          data-bs-parent="#accordionString">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Concatena varias cadenas en una sola
+SELECT CONCAT('Hola', ' ', 'Mundo') AS cadena_unida;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#concatExample" aria-expanded="false" aria-controls="concatExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="concatExample">
+              <pre><code>/*
++---------------+
+| cadena_unida  |
++---------------+
+| Hola Mundo    |
++---------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /CONCAT -->
+    </div>
+    <!-- /accordionString -->
+
+    <!-- ================================= -->
+    <!-- 4. Funciones de Fecha y Hora      -->
+    <!-- ================================= -->
+    <h2 class="section-spacing" id="fechas">4. Funciones de Fecha y Hora</h2>
+    <p class="text-muted">
+      Trabajan con valores de tiempo (fecha/hora) y permiten cálculos o
+      conversiones.
+    </p>
+
+    <div class="accordion mb-4" id="accordionDateTime">
+      <!-- NOW, GETDATE, CURRENT_TIMESTAMP -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingNow">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseNow" aria-expanded="false" aria-controls="collapseNow">
+            NOW(), GETDATE(), CURRENT_TIMESTAMP
+          </button>
+        </h2>
+        <div id="collapseNow" class="accordion-collapse collapse" aria-labelledby="headingNow"
+          data-bs-parent="#accordionDateTime">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Retorna la fecha y hora actual del servidor (varía según el SGBD)
+
+-- MySQL
+SELECT NOW() AS fecha_actual;
+
+-- SQL Server
+SELECT GETDATE() AS fecha_actual;
+
+-- Estándar SQL
+SELECT CURRENT_TIMESTAMP;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#nowExample" aria-expanded="false" aria-controls="nowExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="nowExample">
+              <pre><code>/*
+Posible resultado (ejemplo):
++---------------------+
+| fecha_actual        |
++---------------------+
+| 2025-03-20 10:15:42 |
++---------------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /NOW -->
+
+      <!-- CURDATE / CURRENT_DATE -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingCurdate">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseCurdate" aria-expanded="false" aria-controls="collapseCurdate">
+            CURDATE() / CURRENT_DATE
+          </button>
+        </h2>
+        <div id="collapseCurdate" class="accordion-collapse collapse" aria-labelledby="headingCurdate"
+          data-bs-parent="#accordionDateTime">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Retorna la fecha actual (sin hora)
+
+SELECT CURDATE() AS solo_fecha;   -- MySQL
+SELECT CURRENT_DATE;              -- Estándar
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#curdateExample" aria-expanded="false" aria-controls="curdateExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="curdateExample">
+              <pre><code>/*
+Posible resultado:
++------------+
+| solo_fecha |
++------------+
+| 2025-03-20 |
++------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /CURDATE -->
+
+      <!-- DATEADD / DATE_ADD -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingDateadd">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseDateadd" aria-expanded="false" aria-controls="collapseDateadd">
+            DATEADD() / DATE_ADD()
+          </button>
+        </h2>
+        <div id="collapseDateadd" class="accordion-collapse collapse" aria-labelledby="headingDateadd"
+          data-bs-parent="#accordionDateTime">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Añade un intervalo de tiempo a una fecha dada (varía según el SGBD)
+
+-- SQL Server:
+SELECT DATEADD(DAY, 5, '2025-01-01') AS nueva_fecha;
+
+-- MySQL:
+SELECT DATE_ADD('2025-01-01', INTERVAL 5 DAY) AS nueva_fecha;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#dateAddExample" aria-expanded="false" aria-controls="dateAddExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="dateAddExample">
+              <pre><code>/*
+Posible resultado:
++-------------+
+| nueva_fecha |
++-------------+
+| 2025-01-06  |
++-------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /DATEADD -->
+
+      <!-- DATEDIFF -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingDatediff">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseDatediff" aria-expanded="false" aria-controls="collapseDatediff">
+            DATEDIFF()
+          </button>
+        </h2>
+        <div id="collapseDatediff" class="accordion-collapse collapse" aria-labelledby="headingDatediff"
+          data-bs-parent="#accordionDateTime">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Devuelve la diferencia entre dos fechas en días
+
+-- MySQL:
+SELECT DATEDIFF('2025-01-10', '2025-01-01') AS diferencia_dias;
+
+-- SQL Server:
+SELECT DATEDIFF(DAY, '2025-01-01', '2025-01-10') AS diferencia_dias;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#datediffExample" aria-expanded="false" aria-controls="datediffExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="datediffExample">
+              <pre><code>/*
+Posible resultado:
++------------------+
+| diferencia_dias  |
++------------------+
+| 9                |
++------------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /DATEDIFF -->
+
+      <!-- EXTRACT / DATEPART -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingExtract">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseExtract" aria-expanded="false" aria-controls="collapseExtract">
+            EXTRACT() / DATEPART()
+          </button>
+        </h2>
+        <div id="collapseExtract" class="accordion-collapse collapse" aria-labelledby="headingExtract"
+          data-bs-parent="#accordionDateTime">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Extrae una parte específica de la fecha (año, mes, día, etc.)
+
+-- Estándar SQL (PostgreSQL, Oracle):
+SELECT EXTRACT(YEAR FROM CURRENT_DATE) AS anio;
+
+-- SQL Server:
+SELECT DATEPART(YEAR, GETDATE()) AS anio;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#extractExample" aria-expanded="false" aria-controls="extractExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="extractExample">
+              <pre><code>/*
+Posible resultado:
++------+
+| anio |
++------+
+| 2025 |
++------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /EXTRACT -->
+    </div>
+    <!-- /accordionDateTime -->
+
+    <!-- =========================================== -->
+    <!-- 5. Funciones Lógicas y de Control de Flujo  -->
+    <!-- =========================================== -->
+    <h2 class="section-spacing" id="logicas">
+      5. Funciones Lógicas y de Control de Flujo
+    </h2>
+    <p class="text-muted">
+      Expresiones para manejar condiciones y valores <code>NULL</code>.
+    </p>
+
+    <div class="accordion mb-4" id="accordionLogic">
+      <!-- CASE -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingCase">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseCase" aria-expanded="false" aria-controls="collapseCase">
+            CASE
+          </button>
+        </h2>
+        <div id="collapseCase" class="accordion-collapse collapse" aria-labelledby="headingCase"
+          data-bs-parent="#accordionLogic">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Expresión condicional muy usada
+
+SELECT 
+    nombre,
+    salario,
+    CASE 
+        WHEN salario < 2000 THEN 'Bajo'
+        WHEN salario BETWEEN 2000 AND 5000 THEN 'Medio'
+        ELSE 'Alto'
+    END AS categoria_salarial
+FROM empleados;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#caseExample" aria-expanded="false" aria-controls="caseExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="caseExample">
+              <pre><code>/*
+Posible resultado (ejemplo):
++--------+---------+--------------------+
+| nombre | salario | categoria_salarial|
++--------+---------+--------------------+
+| Ana    | 2500.00 | Medio             |
+| Juan   | 1800.00 | Bajo              |
+| Pedro  | 3200.00 | Medio             |
+| Maria  | 5000.00 | Medio (o Alto)*   |
+| Lucia  | 4000.00 | Medio             |
++--------+---------+--------------------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /CASE -->
+
+      <!-- COALESCE -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingCoalesce">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseCoalesce" aria-expanded="false" aria-controls="collapseCoalesce">
+            COALESCE()
+          </button>
+        </h2>
+        <div id="collapseCoalesce" class="accordion-collapse collapse" aria-labelledby="headingCoalesce"
+          data-bs-parent="#accordionLogic">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Retorna el primer valor no nulo de la lista
+SELECT COALESCE(telefono_movil, telefono_casa, 'No disponible') AS telefono
+FROM contactos;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#coalesceExample" aria-expanded="false" aria-controls="coalesceExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="coalesceExample">
+              <pre><code>/*
+Posible resultado:
++---------------+
+| telefono      |
++---------------+
+| 555-1234      |
++---------------+
+(O si ambos son NULL, "No disponible")
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /COALESCE -->
+
+      <!-- NULLIF -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingNullif">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseNullif" aria-expanded="false" aria-controls="collapseNullif">
+            NULLIF()
+          </button>
+        </h2>
+        <div id="collapseNullif" class="accordion-collapse collapse" aria-labelledby="headingNullif"
+          data-bs-parent="#accordionLogic">
+          <div class="accordion-body">
+            <p><strong>Descripción y código:</strong></p>
+            <pre><code>-- Retorna NULL si exp1 = exp2; de lo contrario, exp1
+SELECT NULLIF(columna, 0) AS valor
+FROM tabla_ejemplo;
+</code></pre>
+
+            <button class="btn btn-sm btn-secondary mb-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#nullifExample" aria-expanded="false" aria-controls="nullifExample">
+              Ver ejemplo de resultado
+            </button>
+            <div class="collapse" id="nullifExample">
+              <pre><code>/*
+Si columna = 0, se mostrará NULL.
+De lo contrario, se mostrará el valor de columna.
+Posible resultado:
++-------+
+| valor |
++-------+
+| NULL  |
++-------+
+*/
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /NULLIF -->
+    </div>
+    <!-- /accordionLogic -->
+
+    <!-- ===================================== -->
+    <!-- 6. Funciones de Ventana (Window)      -->
+    <!-- ===================================== -->
+    <h2 class="section-spacing" id="ventana">
+      6. Funciones de Ventana (Window Functions)
+    </h2>
+    <p class="text-muted">
+      Permiten realizar operaciones similares a las de agregado, pero sin
+      colapsar los resultados en una sola fila. Se definen con la cláusula
+      <code>OVER</code> y se pueden particionar (<code>PARTITION BY</code>) y
+      ordenar (<code>ORDER BY</code>) de forma independiente.
+    </p>
+    <div class="card mb-4">
+      <div class="card-body">
+        <p><strong>Ejemplo y posible resultado:</strong></p>
+        <pre><code>SELECT 
+    empleado_id,
+    departamento,
+    salario,
+    ROW_NUMBER() OVER (PARTITION BY departamento ORDER BY salario DESC) AS num_fila
+FROM empleados;
+
+/*
+Posible resultado:
++-------------+---------------+---------+----------+
+| empleado_id | departamento  | salario | num_fila |
++-------------+---------------+---------+----------+
+|     3       | Contabilidad  | 3200.00 |    1     |
+|     1       | Contabilidad  | 2500.00 |    2     |
+|     4       | Ventas        | 5000.00 |    1     |
+|     2       | Ventas        | 1800.00 |    2     |
+|     5       | IT            | 4000.00 |    1     |
++-------------+---------------+---------+----------+
+*/
+</code></pre>
+      </div>
+    </div>
+
+    <!-- =========================================== -->
+    <!-- 7. Funciones Definidas por el Usuario (UDF) -->
+    <!-- =========================================== -->
+    <h2 class="section-spacing" id="udf">
+      7. Funciones Definidas por el Usuario (UDF)
+    </h2>
+    <p class="text-muted">
+      La sintaxis varía según el motor de base de datos. Un ejemplo en SQL
+      Server:
+    </p>
+    <div class="card mb-4">
+      <div class="card-body">
+        <pre><code>CREATE FUNCTION fn_CalcularIVA
+(
+    @precio DECIMAL(10,2), 
+    @tasa DECIMAL(5,2)
+)
+RETURNS DECIMAL(10,2)
+AS
+BEGIN
+    DECLARE @valorIVA DECIMAL(10,2);
+    SET @valorIVA = @precio * @tasa;
+    RETURN @valorIVA;
+END;
+
+SELECT dbo.fn_CalcularIVA(100, 0.21) AS iva_calculado; 
+-- Resultado: 21.00
+</code></pre>
+        <p><strong>En MySQL:</strong></p>
+        <pre><code>DELIMITER $$
+CREATE FUNCTION fn_calcularIVA(precio DECIMAL(10,2), tasa DECIMAL(5,2))
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+    DECLARE valorIVA DECIMAL(10,2);
+    SET valorIVA = precio * tasa;
+    RETURN valorIVA;
+END $$
+DELIMITER ;
+
+SELECT fn_calcularIVA(100, 0.21) AS iva_calculado;
+/*
+Posible resultado:
++---------------+
+| iva_calculado |
++---------------+
+| 21.00         |
++---------------+
+*/
+</code></pre>
+      </div>
+    </div>
+
+    <!-- ================================= -->
+    <!-- 8. Ejemplos Prácticos con Código  -->
+    <!-- ================================= -->
+    <h2 class="section-spacing" id="ejemplos">8. Ejemplos Prácticos</h2>
+    <div class="card mb-4">
+      <div class="card-body">
+        <p>
+          Sentencias que puedes ejecutar (adaptar a tu SGBD). Primero, creamos
+          una base de datos y tabla de ejemplo:
+        </p>
+        <pre><code>-- Crear base de datos (opcional, depende de tu SGBD)
+CREATE DATABASE mi_basedatos;
+USE mi_basedatos;  -- MySQL
+
+-- Crear tabla de ejemplo
+CREATE TABLE empleados (
+    empleado_id INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    departamento VARCHAR(50),
+    salario DECIMAL(10,2),
+    fecha_ingreso DATE
+);
+
+-- Insertar datos de prueba
+INSERT INTO empleados (empleado_id, nombre, departamento, salario, fecha_ingreso)
+VALUES
+(1, 'Ana', 'Contabilidad', 2500.00, '2022-01-15'),
+(2, 'Juan', 'Ventas',       1800.00, '2021-11-10'),
+(3, 'Pedro', 'Contabilidad', 3200.00, '2019-06-01'),
+(4, 'Maria', 'Ventas',       5000.00, '2020-02-20'),
+(5, 'Lucia', 'IT',           4000.00, '2021-08-30');
+</code></pre>
+        <p>
+          <strong>Consultas de ejemplo (con posibles resultados):</strong>
+        </p>
+        <pre><code>-- 1) Funciones de agregado
+SELECT COUNT(*) AS total_empleados,
+       AVG(salario) AS salario_promedio,
+       MIN(salario) AS salario_minimo,
+       MAX(salario) AS salario_maximo
+FROM empleados;
+
+/*
+Posible resultado:
++------------------+-------------------+-----------------+-----------------+
+| total_empleados  | salario_promedio  | salario_minimo  | salario_maximo  |
++------------------+-------------------+-----------------+-----------------+
+|        5         |     3500.00       |   1800.00       |   5000.00       |
++------------------+-------------------+-----------------+-----------------+
+*/
+
+-- 2) Funciones de cadena
+SELECT UPPER(nombre) AS nombre_mayusculas,
+       LOWER(departamento) AS departamento_minusculas
+FROM empleados;
+
+/*
+Posible resultado:
++-------------------+-------------------------+
+| nombre_mayusculas | departamento_minusculas|
++-------------------+-------------------------+
+| ANA               | contabilidad           |
+| JUAN              | ventas                 |
+| PEDRO             | contabilidad           |
+| MARIA             | ventas                 |
+| LUCIA             | it                     |
++-------------------+-------------------------+
+*/
+
+-- 3) Funciones de fecha (días en la empresa) - en MySQL
+SELECT nombre,
+       DATEDIFF(CURRENT_DATE, fecha_ingreso) AS dias_en_empresa
+FROM empleados;
+
+/*
+Posible resultado (ejemplo si hoy es 2025-03-20):
++--------+------------------+
+| nombre | dias_en_empresa |
++--------+------------------+
+| Ana    | 796             |
+| Juan   | 861             |
+| Pedro  | 1389            |
+| Maria  | 1120            |
+| Lucia  | 933             |
++--------+------------------+
+*/
+
+-- 4) CASE + funciones numéricas
+SELECT nombre,
+       salario,
+       ROUND(salario * 1.10, 2) AS salario_aumentado_10,
+       CASE 
+         WHEN salario < 2000 THEN 'Bajo'
+         WHEN salario BETWEEN 2000 AND 4000 THEN 'Medio'
+         ELSE 'Alto'
+       END AS categoria
+FROM empleados;
+
+/*
+Posible resultado:
++--------+---------+-----------------------+-----------+
+| nombre | salario | salario_aumentado_10 | categoria |
++--------+---------+-----------------------+-----------+
+| Ana    | 2500.00 | 2750.00              | Medio     |
+| Juan   | 1800.00 | 1980.00              | Bajo      |
+| Pedro  | 3200.00 | 3520.00              | Medio     |
+| Maria  | 5000.00 | 5500.00              | Alto      |
+| Lucia  | 4000.00 | 4400.00              | Medio     |
++--------+---------+-----------------------+-----------+
+*/
+
+-- 5) Funciones de ventana
+SELECT empleado_id,
+       departamento,
+       salario,
+       ROW_NUMBER() OVER (PARTITION BY departamento ORDER BY salario DESC) AS ranking_por_depto
+FROM empleados;
+
+/*
+Posible resultado:
++-------------+---------------+---------+------------------+
+| empleado_id | departamento  | salario | ranking_por_depto|
++-------------+---------------+---------+------------------+
+|     3       | Contabilidad  | 3200.00 |        1         |
+|     1       | Contabilidad  | 2500.00 |        2         |
+|     4       | Ventas        | 5000.00 |        1         |
+|     2       | Ventas        | 1800.00 |        2         |
+|     5       | IT            | 4000.00 |        1         |
++-------------+---------------+---------+------------------+
+*/
+</code></pre>
+      </div>
+    </div>
+
+    <!-- 9. Consejos Generales -->
+    <h2 class="section-spacing" id="consejos">9. Consejos Generales</h2>
+    <ul>
+      <li>
+        <strong>Verifica la compatibilidad</strong>: Algunas funciones varían
+        entre distintos SGBD.
+      </li>
+      <li>
+        <strong>Usa el manual oficial</strong>: Para confirmar sintaxis y
+        disponibilidad.
+      </li>
+      <li>
+        <strong>Optimiza</strong>: Evita usar funciones en
+        <code>WHERE</code> si la columna está indexada.
+      </li>
+      <li>
+        <strong>Organiza tu código</strong>: Separa secciones (creación de
+        tablas, inserción de datos, etc.).
+      </li>
+      <li>
+        <strong>Ejemplos con datos reales</strong>: Facilita la comprensión en
+        trabajos académicos o presentaciones.
+      </li>
+    </ul>
+
+    <!-- Conclusión -->
+    <h2 class="section-spacing">Conclusión</h2>
+    <p>
+      En SQL, las funciones son herramientas poderosísimas para cálculos,
+      formateo de datos y transformaciones. Conocer tanto las
+      <strong>funciones de agregado</strong> como las
+      <strong>escalares</strong> (numéricas, cadena, fecha/hora), las
+      <strong>funciones de ventana</strong> y las <strong>UDF</strong> te
+      permitirá crear consultas avanzadas de manera eficiente.
+    </p>
+  </div>
+
+  <h2>Realised</h2>
+  <div class="section-block">
+    <p>
+      &copyJavier Manzano
+    </p>
+  </div>
+  <!-- /container -->
+
+  <!-- Bootstrap 5 JS (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
