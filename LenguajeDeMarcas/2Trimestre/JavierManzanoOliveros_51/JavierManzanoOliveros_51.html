@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Overflow</title>
+    <style>
+        .contenedor {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .box {
+            width: 150px;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid black;
+            background-color: lightblue;
+        }
+
+        .visible {
+            overflow: visible;
+        }
+
+        .hidden {
+            overflow: hidden;
+        }
+
+        .scroll {
+            overflow: scroll;
+        }
+
+        .auto {
+            overflow: auto;
+        }
+
+        .scroll-horizontal {
+            overflow-x: scroll;
+            overflow-y: hidden;
+            white-space: nowrap;
+        }
+
+        .scroll-vertical {
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+        <div class="box visible">
+            <strong>Overflow: visible</strong>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione quidem sit unde nostrum facere. Commodi
+                totam impedit quia minima vitae cum sapiente molestias in eaque, molestiae harum placeat porro sunt.</p>
+        </div>
+
+        <div class="box hidden">
+            <strong>Overflow: hidden</strong>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum ducimus quae, repellendus a praesentium eligendi iure. Neque maxime voluptates recusandae autem molestias saepe, dolorum laborum et? Velit tempore laborum nisi.</p>
+        </div>
+
+        <div class="box scroll">
+            <strong>Overflow: scroll</strong>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis qui mollitia inventore odit fuga veritatis repellendus placeat, perspiciatis minus eum nulla iure rem fugit pariatur officiis ab, accusantium cumque minima!</p>
+        </div>
+
+        <div class="box auto">
+            <strong>Overflow: auto</strong>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut eum facere asperiores nam repudiandae et dolorum velit autem? Delectus odit corporis voluptatum! Soluta, porro. Debitis cupiditate dolores temporibus quisquam accusantium.</p>
+        </div>
+
+        <div class="box scroll-horizontal">
+            <strong>Overflow: scroll horizontal</strong>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. In ducimus veniam iure, aspernatur magni unde reiciendis officiis perferendis aliquam praesentium voluptate ab mollitia maiores, veritatis corporis doloribus voluptatem. Explicabo, et.</p>
+        </div>
+
+        <div class="box scroll-vertical">
+            <strong>Overflow: scroll vertical</strong>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta id, odit hic at temporibus mollitia. Culpa commodi enim aspernatur deserunt impedit odit, praesentium quam voluptates saepe quasi distinctio, amet est.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
