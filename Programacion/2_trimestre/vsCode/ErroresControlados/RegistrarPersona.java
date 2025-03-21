@@ -42,5 +42,5 @@ public class RegistrarPersona {
 
     Scanner sc = new Scanner(System.in);
 
-    try
+    
 }
