@@ -1,83 +1,70 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú de Navegación</title>
+    <title>Menú de navegación</title>
     <style>
-        nav {
-            background-color: rgb(76, 178, 127);
+        header {
+            background-color: #6f9680;
+            color: white;
+            text-align: center;
             padding: 10px;
+        }
+
+        nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        img {
-            margin-right: 20px;
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
         }
 
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        nav ul li {
+            position: relative;
+            border: 1px solid black;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        nav ul li a {
+            color: black;
+            text-decoration: none;
+        }
+
+        nav ul li .submenu {
+            display: none;
+            position: absolute;
+            background-color: #6f9680;
+            top: 100%;
+            left: 0;
+            flex-direction: column;
+        }
+
+        nav ul li:hover .submenu {
             display: flex;
         }
 
-        ul li {
-            position: relative;
-            margin-right: 20px;
-        }
-
-        ul li a {
-            text-decoration: none;
-            color: white;
-            padding: 10px;
-            display: block;
-        }
-
-        ul li:hover > a {
-            background-color: rgb(60, 150, 110);
-        }
-
-        .submenu {
-            display: none;
-            position: absolute;
-            background-color: rgb(76, 178, 127);
-            list-style: none;
-            top: 100%;
-            left: 0;
-            padding: 0;
-            margin: 0;
-            border-radius: 5px;
-        }
-
-        .submenu li {
-            width: 150px;
-        }
-
-        .submenu li a {
-            padding: 10px;
-            display: block;
-        }
-
-        ul li:hover .submenu {
-            display: block;
-        }
-
-        .menu {
-            margin-left: auto;
+        nav ul .submenu li a {
+            padding: 5px 10px;
         }
     </style>
 </head>
+
 <body>
     <header>
         <nav>
             <a href="#"><img src="jazztel.png" alt="Imagen" width="74"></a>
-            <ul class="menu">
+            <ul>
                 <li><a href="#">Inicio</a></li>
                 <li><a href="#">Países</a>
-                    <ul class="submenu">
+                    <ul class="submenu" id="submenu1">
                         <li><a href="#">España</a></li>
                         <li><a href="#">Francia</a></li>
                         <li><a href="#">Alemania</a></li>
@@ -85,7 +72,7 @@
                     </ul>
                 </li>
                 <li><a href="#">Ciudades</a>
-                    <ul class="submenu">
+                    <ul class="submenu" id="submenu2">
                         <li><a href="#">Cádiz</a></li>
                         <li><a href="#">Sevilla</a></li>
                         <li><a href="#">Madrid</a></li>
@@ -94,5 +81,7 @@
             </ul>
         </nav>
     </header>
+
 </body>
+
 </html>
