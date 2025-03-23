@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guía SQL Minimalista y Colorida</title>
+
+  <!-- Bootstrap 5 -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    defer
+  ></script>
+  <!-- Iconos de Bootstrap -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa; /* Fondo clarito minimalista */
+    }
+    /* SIDEBAR (menú lateral) */
+    .sidebar {
+      width: 260px;
+      background: #343a40; /* Gris oscuro minimal */
+      color: #fff;
+      height: 100vh;
+      position: fixed;
+      overflow-y: auto;
+      transition: transform 0.4s ease-in-out;
+      z-index: 999;
+    }
+    .sidebar.hide {
+      transform: translateX(-100%);
+    }
+    .sidebar .title {
+      background: #6f42c1; /* Morado bootstrap */
+      text-align: center;
+      margin: 0;
+      padding: 1rem;
+      font-size: 1.25rem;
+      color: #fff;
+    }
+    .sidebar .nav-link {
+      color: #eee;
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sidebar .nav-link:hover {
+      background-color: #495057;
+    }
+    .sidebar .nav-link.read {
+      background-color: #198754; /* Verde bootstrap */
+      color: #e7ffe7;
+    }
+    .sidebar .check-icon {
+      cursor: pointer;
+      margin-left: 1rem;
+      color: #ccc;
+    }
+    .sidebar .check-icon:hover {
+      color: #fff;
+    }
+
+    /* BOTÓN PARA MOSTRAR/OCULTAR MENÚ (EMOJI ARCOÍRIS) */
+    .toggle-btn {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      font-size: 1.3rem;
+      background: #dee2e6;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .content-area {
+      margin-left: 260px;
+      padding: 2rem;
+      transition: margin-left 0.4s ease-in-out;
+    }
+    .content-area.full {
+      margin-left: 0;
+    }
+
+    /* TITULOS Y CAJAS */
+    h1 {
+      color: #0d6efd; /* Azul */
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 3px double #dee2e6;
+      color: #495057;
+      margin-bottom: 1rem;
+    }
+    pre {
+      background: #fdfdfe;
+      padding: 1rem;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    code {
+      color: #d63384;
+    }
+    /* TIPS & QUIZ */
+    .tip-box {
+      background: #d1ecf1;
+      border-left: 6px solid #0c5460;
+      border-radius: 0.25rem;
+      padding: 1rem;
+      margin: 1rem 0;
+      color: #0c5460;
+    }
+    .question-box {
+      background: #f8d7da;
+      border-left: 6px solid #dc3545;
+      border-radius: 0.25rem;
+      padding: 1rem;
+      margin: 1rem 0;
+      color: #721c24;
+    }
+    .quiz-questions {
+      list-style-type: circle;
+      margin-left: 1.5rem;
+      margin-bottom: 0;
+    }
+    .quiz-result {
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BOTÓN DE MENÚ -->
+  <button class="toggle-btn" id="toggleBtn">🌈</button>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <h2 class="title">Secciones</h2>
+    <div class="list-group list-group-flush">
+      <!-- Cada enlace con su check-icon y data-section -->
+      <a href="#sec1" class="nav-link" data-section="sec1">
+        <span>1. SELECT básico</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec1"></i>
+      </a>
+      <a href="#sec2" class="nav-link" data-section="sec2">
+        <span>2. WHERE, AND, OR, NOT</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec2"></i>
+      </a>
+      <a href="#sec3" class="nav-link" data-section="sec3">
+        <span>3. ORDER BY</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec3"></i>
+      </a>
+      <a href="#sec4" class="nav-link" data-section="sec4">
+        <span>4. LIMIT</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec4"></i>
+      </a>
+      <a href="#sec5" class="nav-link" data-section="sec5">
+        <span>5. DISTINCT</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec5"></i>
+      </a>
+      <a href="#sec6" class="nav-link" data-section="sec6">
+        <span>6. Funciones agregadas</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec6"></i>
+      </a>
+      <a href="#sec7" class="nav-link" data-section="sec7">
+        <span>7. GROUP BY y HAVING</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec7"></i>
+      </a>
+      <a href="#sec8" class="nav-link" data-section="sec8">
+        <span>8. Fechas y texto</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec8"></i>
+      </a>
+      <a href="#sec9" class="nav-link" data-section="sec9">
+        <span>9. Subconsultas</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec9"></i>
+      </a>
+      <a href="#sec10" class="nav-link" data-section="sec10">
+        <span>10. JOINs</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec10"></i>
+      </a>
+      <a href="#sec11" class="nav-link" data-section="sec11">
+        <span>11. IN, BETWEEN, LIKE</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec11"></i>
+      </a>
+      <a href="#sec12" class="nav-link" data-section="sec12">
+        <span>12. CASE y IF</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec12"></i>
+      </a>
+      <a href="#sec13" class="nav-link" data-section="sec13">
+        <span>13. Funciones de ventana</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec13"></i>
+      </a>
+      <a href="#sec14" class="nav-link" data-section="sec14">
+        <span>14. Vistas</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec14"></i>
+      </a>
+      <a href="#sec15" class="nav-link" data-section="sec15">
+        <span>15. Procedimientos</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec15"></i>
+      </a>
+      <a href="#sec16" class="nav-link" data-section="sec16">
+        <span>16. Triggers</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec16"></i>
+      </a>
+      <a href="#sec17" class="nav-link" data-section="sec17">
+        <span>17. Índices</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec17"></i>
+      </a>
+      <a href="#sec18" class="nav-link" data-section="sec18">
+        <span>18. Transacciones</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec18"></i>
+      </a>
+      <a href="#sec19" class="nav-link" data-section="sec19">
+        <span>19. Seguridad</span>
+        <i class="bi bi-check-square-fill check-icon" data-target="sec19"></i>
+      </a>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <div class="content-area" id="contentArea">
+    <h1>Guía SQL Minimalista &amp; Colorida</h1>
+    <p>
+      Esta guía explica las consultas más importantes de <strong>MySQL</strong>, 
+      desde lo más básico hasta lo avanzado. Se compone de <strong>19 secciones</strong> 
+      con ejemplos, tips y quizzes.  
+      <br>
+      Usa el <em>emoji 🌈</em> para mostrar/ocultar el menú lateral. 
+      Pulsa en el <i class="bi bi-check-square-fill"></i> junto a cada sección si deseas 
+      marcarla como “leída”. ¡Disfruta!
+    </p>
+    <hr/>
+
+    <!-- ====== SECCIÓN 1 (SELECT BÁSICO) ====== -->
+    <section id="sec1">
+      <h2>1. SELECT básico</h2>
+      <p>
+        <strong>Explicación:</strong> <code>SELECT</code> sirve para leer datos de una tabla. 
+        Por ejemplo, <code>SELECT *</code> obtiene todas las columnas, aunque no es lo ideal 
+        en producción por rendimiento.
+      </p>
+      <pre><code>SELECT *
+FROM Empleados;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips &amp; Tricks 📌:</strong>
+        <ul>
+          <li>Mejor especificar columnas: <code>SELECT Nombre, Apellido</code>.</li>
+          <li>Sin <code>ORDER BY</code>, el orden de filas no está garantizado.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Cómo muestras sólo <code>Nombre</code> y <code>Salario</code>?</li>
+          <li>¿Por qué <code>SELECT *</code> se desaconseja en grandes tablas?</li>
+        </ul>
+        <div class="quiz-result">¡Vamos bien! ✅</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 2 (WHERE, AND, OR, NOT) ====== -->
+    <section id="sec2">
+      <h2>2. WHERE, AND, OR, NOT</h2>
+      <p>
+        <strong>Explicación:</strong> <code>WHERE</code> filtra filas. 
+        <code>AND</code>, <code>OR</code> y <code>NOT</code> permiten combinar 
+        y negar condiciones lógicas.
+      </p>
+      <pre><code>SELECT *
+FROM Empleados
+WHERE DepartamentoID = 3
+   OR (DepartamentoID = 1 AND Salario &gt; 50000);
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 🧠:</strong>
+        <ul>
+          <li><code>AND</code> evalúa ambas condiciones, <code>OR</code> con que una sea verdadera basta.</li>
+          <li>Usa paréntesis para aclarar la prioridad lógica.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Cuál es la diferencia entre <code>AND</code> y <code>OR</code>?</li>
+          <li>¿Cómo negarías que <code>DeptID = 2</code>?</li>
+        </ul>
+        <div class="quiz-result">Si lo respondes, vas genial. 👍</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 3 (ORDER BY) ====== -->
+    <section id="sec3">
+      <h2>3. ORDER BY</h2>
+      <p>
+        <strong>Explicación:</strong> Ordena los resultados por una o varias columnas. 
+        Usa <code>ASC</code> (ascendente) o <code>DESC</code> (descendente).
+      </p>
+      <pre><code>SELECT Nombre, Salario
+FROM Empleados
+ORDER BY Salario DESC;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 📌:</strong>
+        <ul>
+          <li><code>ASC</code> es por defecto. <code>DESC</code> es para mayor a menor.</li>
+          <li>Puede usarse en varias columnas: <code>ORDER BY Depto ASC, Salario DESC</code>.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Qué pasa si no pones <code>ORDER BY</code>?</li>
+          <li>¿Cómo ordenarías por <code>Apellido</code> ascendente?</li>
+        </ul>
+        <div class="quiz-result">¡Sigue así! 🚀</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 4 (LIMIT) ====== -->
+    <section id="sec4">
+      <h2>4. LIMIT</h2>
+      <p>
+        <strong>Explicación:</strong> <code>LIMIT</code> controla el número de filas devueltas, 
+        útil para top N o paginación.
+      </p>
+      <pre><code>SELECT Nombre, Salario
+FROM Empleados
+ORDER BY Salario DESC
+LIMIT 5;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 🧠:</strong>
+        <ul>
+          <li><code>LIMIT offset, count</code> sirve para paginar.</li>
+          <li>Sin <code>ORDER BY</code> no sabrás qué filas concretas salen.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Cómo obtendrías sólo las 3 filas con mayor salario?</li>
+          <li>¿Cómo harías para mostrar de la fila 20 a la 29?</li>
+        </ul>
+        <div class="quiz-result">¡Perfecto! 🏆</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 5 (DISTINCT) ====== -->
+    <section id="sec5">
+      <h2>5. DISTINCT</h2>
+      <p>
+        <strong>Explicación:</strong> Elimina duplicados en las columnas seleccionadas.
+      </p>
+      <pre><code>SELECT DISTINCT DepartamentoID
+FROM Empleados;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 📌:</strong>
+        <ul>
+          <li>Combina con una o varias columnas.</li>
+          <li><code>GROUP BY</code> también obtiene valores únicos, pero <code>DISTINCT</code> es más directo.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Qué pasa si seleccionas <code>DISTINCT Depto, Salario</code>?</li>
+          <li>¿En qué caso preferirías <code>GROUP BY</code>?</li>
+        </ul>
+        <div class="quiz-result">¡Sigue adelante! ✔️</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 6 (FUNCIONES AGREGADAS) ====== -->
+    <section id="sec6">
+      <h2>6. Funciones agregadas</h2>
+      <p>
+        <strong>Explicación:</strong> <code>SUM</code>, <code>AVG</code>, <code>COUNT</code>, 
+        <code>MAX</code>, <code>MIN</code> para cálculos sobre grupos de filas.
+      </p>
+      <pre><code>SELECT 
+  COUNT(*) AS Total,
+  AVG(Salario) AS Promedio,
+  MAX(Salario) AS SalarioMax
+FROM Empleados;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 🧠:</strong>
+        <ul>
+          <li><code>COUNT(col)</code> ignora NULL, <code>COUNT(*)</code> no.</li>
+          <li>Para usarlas junto a columnas normales, necesitas <code>GROUP BY</code>.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Diferencias entre <code>COUNT(*)</code> y <code>COUNT(col)</code>?</li>
+          <li>¿Cómo obtendrías la suma total de salarios?</li>
+        </ul>
+        <div class="quiz-result">¡Bien! 🎉</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 7 (GROUP BY y HAVING) ====== -->
+    <section id="sec7">
+      <h2>7. GROUP BY y HAVING</h2>
+      <p>
+        <strong>Explicación:</strong> <code>GROUP BY</code> agrupa filas para funciones agregadas.
+        <code>HAVING</code> filtra grupos resultantes.
+      </p>
+      <pre><code>SELECT DepartamentoID,
+       COUNT(*) AS NumEmp,
+       AVG(Salario) AS SalarioProm
+FROM Empleados
+GROUP BY DepartamentoID
+HAVING AVG(Salario) &gt; 40000;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 📌:</strong>
+        <ul>
+          <li><code>WHERE</code> filtra antes de agrupar, <code>HAVING</code> después.</li>
+          <li>Incluye en <code>GROUP BY</code> las columnas no agregadas en SELECT.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Por qué no se puede usar <code>AVG()</code> en <code>WHERE</code>?</li>
+          <li>¿Qué pasa si omites una columna del GROUP BY?</li>
+        </ul>
+        <div class="quiz-result">¡Excelente! 😎</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 8 (FECHAS Y TEXTO) ====== -->
+    <section id="sec8">
+      <h2>8. Fechas y texto</h2>
+      <p>
+        <strong>Explicación:</strong> MySQL ofrece funciones de fecha (p.ej. 
+        <code>YEAR()</code>, <code>MONTH()</code>, <code>DATEDIFF()</code>) y de texto 
+        (<code>CONCAT()</code>, <code>UPPER()</code>, <code>SUBSTRING()</code>).
+      </p>
+      <pre><code>SELECT Nombre,
+       YEAR(FechaContratacion) AS Anio,
+       CONCAT(Nombre, ' ', Apellido) AS NombreCompleto
+FROM Empleados;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 🧠:</strong>
+        <ul>
+          <li><code>DATE_FORMAT(fecha,'%d-%m-%Y')</code> para formatear.</li>
+          <li><code>LOWER</code>, <code>UPPER</code>, <code>SUBSTRING</code> para manipular cadenas.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Cómo extraerías el día y el mes de una fecha?</li>
+          <li>¿Para qué usarías <code>TRIM()</code>?</li>
+        </ul>
+        <div class="quiz-result">¡Súper! 🚀</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 9 (SUBCONSULTAS) ====== -->
+    <section id="sec9">
+      <h2>9. Subconsultas</h2>
+      <p>
+        <strong>Explicación:</strong> Consultas anidadas en <code>SELECT</code>, 
+        <code>WHERE</code> o <code>FROM</code> para filtrar o calcular valores.
+      </p>
+      <pre><code>SELECT Nombre
+FROM Empleados
+WHERE Salario &gt; (
+  SELECT AVG(Salario) FROM Empleados
+);
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 📌:</strong>
+        <ul>
+          <li>Si la subconsulta devuelve varias filas, usa <code>IN</code> o <code>EXISTS</code>.</li>
+          <li>Las subconsultas correlacionadas se ejecutan por cada fila externa, ojo con rendimiento.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Cómo encontrarías empleados por encima del salario promedio de su departamento?</li>
+          <li>¿Cuándo es mejor un <code>JOIN</code> que una subconsulta?</li>
+        </ul>
+        <div class="quiz-result">¡Adelante! 🌟</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 10 (JOINS) ====== -->
+    <section id="sec10">
+      <h2>10. JOINs</h2>
+      <p>
+        <strong>Explicación:</strong> Combina filas de varias tablas según llaves foráneas. 
+        <code>INNER JOIN</code> solo filas coincidentes, <code>LEFT JOIN</code> conserva 
+        todas de la izquierda, etc.
+      </p>
+      <pre><code>SELECT e.Nombre, d.NombreDepto
+FROM Empleados e
+INNER JOIN Departamentos d
+  ON e.DepartamentoID = d.DepartamentoID;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 🧠:</strong>
+        <ul>
+          <li>MySQL no soporta <code>FULL JOIN</code> nativamente (usa <code>UNION</code> de <code>LEFT</code> y <code>RIGHT</code>).</li>
+          <li>Self join: la tabla se une a sí misma.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿En qué caso usarías <code>LEFT JOIN</code>?</li>
+          <li>¿Cómo relacionar Empleados con sí misma para jefes-subordinados?</li>
+        </ul>
+        <div class="quiz-result">¡A practicar JOINS! 🏅</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 11 (IN, BETWEEN, LIKE) ====== -->
+    <section id="sec11">
+      <h2>11. IN, BETWEEN, LIKE</h2>
+      <p>
+        <code>IN</code> comprueba si un valor está en una lista. 
+        <code>BETWEEN</code> verifica rangos inclusivos. 
+        <code>LIKE</code> busca patrones en texto (% y _).
+      </p>
+      <pre><code>SELECT Nombre
+FROM Empleados
+WHERE Apellido LIKE '%ez';
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 📌:</strong>
+        <ul>
+          <li><code>BETWEEN x AND y</code> incluye x e y.</li>
+          <li><code>LIKE 'A%'</code> busca palabras que comienzan con A.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Cómo filtrar salarios entre 30000 y 50000?</li>
+          <li>¿Qué apellidos encontraría <code>LIKE '%ez'</code>?</li>
+        </ul>
+        <div class="quiz-result">¡Muy bien! 🏆</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 12 (CASE y IF) ====== -->
+    <section id="sec12">
+      <h2>12. CASE y IF</h2>
+      <p>
+        <strong>Explicación:</strong> <code>CASE WHEN</code> y <code>IF()</code> permiten 
+        hacer lógica condicional en las consultas.
+      </p>
+      <pre><code>SELECT Nombre,
+CASE 
+  WHEN Salario &gt;= 60000 THEN 'Alto'
+  WHEN Salario &gt;= 40000 THEN 'Medio'
+  ELSE 'Bajo'
+END AS Nivel
+FROM Empleados;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 🧠:</strong>
+        <ul>
+          <li><code>CASE</code> es estándar, <code>IF</code> es propia de MySQL.</li>
+          <li>La primera condición verdadera gana.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Cómo crear 3 niveles de antigüedad usando CASE?</li>
+          <li>¿En qué caso <code>IF()</code> es suficiente?</li>
+        </ul>
+        <div class="quiz-result">¡Condicionales listas! ✨</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 13 (FUNCIONES DE VENTANA) ====== -->
+    <section id="sec13">
+      <h2>13. Funciones de ventana</h2>
+      <p>
+        <strong>Explicación:</strong> Desde MySQL 8.0: <code>OVER</code>, <code>ROW_NUMBER</code>, 
+        <code>RANK</code>, etc. Cálculos avanzados sin colapsar filas (ranking, acumulados).
+      </p>
+      <pre><code>SELECT Nombre, 
+       ROW_NUMBER() OVER(
+         PARTITION BY DepartamentoID
+         ORDER BY Salario DESC
+       ) AS Rango
+FROM Empleados;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 🧠:</strong>
+        <ul>
+          <li><code>RANK()</code> y <code>DENSE_RANK()</code> manejan empates distinto.</li>
+          <li><code>LAG(col)</code> y <code>LEAD(col)</code> acceden a la fila previa o siguiente.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Cómo sumar de forma acumulada los salarios por dpto?</li>
+          <li>¿Qué diferencia hay entre <code>ROW_NUMBER</code> y <code>RANK</code>?</li>
+        </ul>
+        <div class="quiz-result">¡Poder analítico! 🔮</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 14 (VISTAS) ====== -->
+    <section id="sec14">
+      <h2>14. Vistas</h2>
+      <p>
+        <strong>Explicación:</strong> <code>CREATE VIEW</code> define una “tabla virtual” 
+        basada en una consulta. Útil para simplificar el acceso o proteger datos.
+      </p>
+      <pre><code>CREATE VIEW EmpleadosConDepto AS
+SELECT e.ID, e.Nombre, d.NombreDepto
+FROM Empleados e
+JOIN Departamentos d
+  ON e.DepartamentoID = d.DepartamentoID;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 📌:</strong>
+        <ul>
+          <li>Las vistas no almacenan datos (no son tablas físicas), sino consultas definidas.</li>
+          <li>Algunas vistas complejas no pueden actualizarse directamente.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Por qué crearías una vista en vez de consultar la tabla directamente?</li>
+          <li>¿Cómo verías a los empleados con Salario &gt; 50000 usando una vista?</li>
+        </ul>
+        <div class="quiz-result">¡Perfecto! 🚀</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 15 (PROCEDIMIENTOS) ====== -->
+    <section id="sec15">
+      <h2>15. Procedimientos</h2>
+      <p>
+        <strong>Explicación:</strong> <em>Stored Procedures</em> guardan lógica SQL (condiciones, bucles). 
+        Se llaman con <code>CALL</code>.
+      </p>
+      <pre><code>CREATE PROCEDURE EmpleadosPorDepto(IN p_dept INT)
+BEGIN
+  SELECT Nombre, Apellido
+  FROM Empleados
+  WHERE DepartamentoID = p_dept;
+END;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 🧠:</strong>
+        <ul>
+          <li>Usa <code>DELIMITER</code> distinto en consola al crearlos.</li>
+          <li>Parámetros <code>IN</code>, <code>OUT</code> o <code>INOUT</code> para flexibilidad.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Cómo crearías un procedimiento que actualice el salario un 10%?</li>
+          <li>¿Qué es <code>INOUT</code>?</li>
+        </ul>
+        <div class="quiz-result">¡Listo para rutinas avanzadas! 🔧</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 16 (TRIGGERS) ====== -->
+    <section id="sec16">
+      <h2>16. Triggers</h2>
+      <p>
+        <strong>Explicación:</strong> Se activan automáticamente al hacer <code>INSERT</code>, <code>UPDATE</code> 
+        o <code>DELETE</code>. Usados para auditoría, integridad, etc.
+      </p>
+      <pre><code>CREATE TRIGGER trg_incrementar
+AFTER INSERT ON Empleados
+FOR EACH ROW
+BEGIN
+  UPDATE Departamentos
+  SET NumeroEmpleados = NumeroEmpleados + 1
+  WHERE DepartamentoID = NEW.DepartamentoID;
+END;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 📌:</strong>
+        <ul>
+          <li><code>NEW</code> hace referencia a la nueva fila, <code>OLD</code> a la anterior en update/delete.</li>
+          <li>Evita lógica muy pesada para no afectar el rendimiento global.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Para qué sirve un trigger BEFORE INSERT?</li>
+          <li>¿Qué sucede si un trigger produce cambios que vuelven a disparar el mismo trigger?</li>
+        </ul>
+        <div class="quiz-result">¡Cuídalo! ⚠️</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 17 (ÍNDICES) ====== -->
+    <section id="sec17">
+      <h2>17. Índices</h2>
+      <p>
+        <strong>Explicación:</strong> Estructuras para agilizar búsquedas por columnas. 
+        A cambio, <code>INSERT/UPDATE/DELETE</code> son más lentos.
+      </p>
+      <pre><code>CREATE INDEX idx_apellido
+ON Empleados(Apellido);
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 🧠:</strong>
+        <ul>
+          <li><code>SHOW INDEX FROM tabla</code> para verlos.</li>
+          <li>En columnas con poca variedad (booleana) no ayudan mucho.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Por qué ralentiza las inserciones masivas?</li>
+          <li>¿Diferencia entre PRIMARY KEY y UNIQUE INDEX?</li>
+        </ul>
+        <div class="quiz-result">¡Optimización! 🌟</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 18 (TRANSACCIONES) ====== -->
+    <section id="sec18">
+      <h2>18. Transacciones</h2>
+      <p>
+        <strong>Explicación:</strong> <code>START TRANSACTION</code>, <code>COMMIT</code>, <code>ROLLBACK</code> 
+        para agrupar operaciones en bloque atómico (todas o ninguna).
+      </p>
+      <pre><code>START TRANSACTION;
+UPDATE Empleados
+  SET DepartamentoID = 2
+  WHERE ID = 1;
+
+UPDATE Departamentos
+  SET NumeroEmpleados = NumeroEmpleados + 1
+  WHERE DepartamentoID = 2;
+
+COMMIT;
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 📌:</strong>
+        <ul>
+          <li>Si algo falla, <code>ROLLBACK</code> revierte todo.</li>
+          <li>Muchas sentencias DDL hacen COMMIT implícito en MySQL.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Qué pasa si no confirmas con <code>COMMIT</code>?</li>
+          <li>¿Para qué sirve <code>SAVEPOINT</code>?</li>
+        </ul>
+        <div class="quiz-result">¡Crucial para integridad! ✅</div>
+      </div>
+    </section>
+
+    <!-- ====== SECCIÓN 19 (SEGURIDAD) ====== -->
+    <section id="sec19">
+      <h2>19. Seguridad</h2>
+      <p>
+        <strong>Explicación:</strong> <code>GRANT</code> otorga privilegios a un usuario, 
+        <code>REVOKE</code> los quita. Ideal para controlar quién puede hacer qué.
+      </p>
+      <pre><code>CREATE USER 'analista'@'localhost' IDENTIFIED BY 'abc123';
+GRANT SELECT, INSERT ON Empresa.* TO 'analista'@'localhost';
+REVOKE INSERT ON Empresa.* FROM 'analista'@'localhost';
+</code></pre>
+      <div class="tip-box">
+        <strong>Tips 🧠:</strong>
+        <ul>
+          <li>Evita <code>GRANT ALL</code> en producción, da solo permisos mínimos necesarios.</li>
+          <li><code>SHOW GRANTS FOR 'usuario'@'host'</code> para ver permisos actuales.</li>
+        </ul>
+      </div>
+      <div class="question-box">
+        <h5>Quiz</h5>
+        <ul class="quiz-questions">
+          <li>¿Cómo darías <code>SELECT</code> sólo en 1 tabla?</li>
+          <li>¿Para qué sirve <code>GRANT OPTION</code>?</li>
+        </ul>
+        <div class="quiz-result">¡Protege tu BD! 🔒</div>
+      </div>
+    </section>
+
+    <hr/>
+    <p>
+      <strong>¡Fin de la guía!</strong>  
+      Has visto las 19 secciones, con ejemplos, tips y quizzes.  
+      Practica cada apartado y marca como leído cada uno cuando te sientas seguro.  
+      ¡Mucho éxito en tu camino con <code>MySQL</code>! 🎉
+    </p>
+  </div>
+
+  <script>
+    // BOTÓN TOGGLE MENÚ
+    const toggleBtn = document.getElementById('toggleBtn');
+    const sidebar = document.getElementById('sidebar');
+    const contentArea = document.getElementById('contentArea');
+
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('hide');
+      contentArea.classList.toggle('full');
+    });
+
+    // MARCAR COMO LEIDO (CHECK ICON)
+    const checkIcons = document.querySelectorAll('.check-icon');
+    checkIcons.forEach(icon => {
+      icon.addEventListener('click', (event) => {
+        event.stopPropagation(); // no navega al hacer click en el icono
+        const sectionId = icon.getAttribute('data-target');
+        const parentLink = document.querySelector(`.nav-link[data-section="${sectionId}"]`);
+        if (parentLink) {
+          parentLink.classList.toggle('read');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
