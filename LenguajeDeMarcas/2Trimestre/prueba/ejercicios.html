@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ejercicios Prácticos de CSS</title>
+</head>
+<body>
+
+  <header>
+    <h1>Guía de Ejercicios CSS: Portafolio Web</h1>
+    <p>
+      A continuación encontrarás todos los pasos para practicar CSS creando un
+      portafolio web. <strong>Lee cada ejercicio y aplícalo a tu proyecto.</strong> 
+      Usa tu propio <code>index.html</code> (o el que se te haya dado) y un archivo 
+      <code>styles.css</code> para implementar estos pasos.
+    </p>
+  </header>
+
+  <main>
+
+    <!-- =========================================
+         1. Estructura HTML a utilizar
+    ========================================== -->
+    <section>
+      <h2>1. Estructura HTML Base</h2>
+      <p>
+        Copia y pega en tu propio archivo <strong>index.html</strong> la siguiente 
+        estructura (o revisa la que ya te fue proporcionada). Se compone de 
+        <em>header</em>, <em>secciones</em> para Sobre Mí, Proyectos, Habilidades, 
+        Contacto y un <em>footer</em>. Asegúrate de enlazar tu <code>styles.css</code> 
+        en el <em>head</em>.
+      </p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+  &lt;title&gt;Portafolio de Nombre Apellido&lt;/title&gt;
+  &lt;!-- Vinculamos el archivo CSS externo --&gt;
+  &lt;link rel="stylesheet" href="styles.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;header id="main-header"&gt;
+    &lt;h1 class="nombre"&gt;Nombre Apellido&lt;/h1&gt;
+    &lt;nav class="menu"&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#about"&gt;Sobre Mí&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#projects"&gt;Proyectos&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#skills"&gt;Habilidades&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#contact"&gt;Contacto&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;section id="about"&gt;
+      &lt;!-- Contenido Sobre Mí --&gt;
+    &lt;/section&gt;
+
+    &lt;section id="projects"&gt;
+      &lt;!-- Tarjetas de Proyectos --&gt;
+    &lt;/section&gt;
+
+    &lt;section id="skills"&gt;
+      &lt;!-- Listado de habilidades --&gt;
+    &lt;/section&gt;
+
+    &lt;section id="contact"&gt;
+      &lt;!-- Formulario o datos de contacto --&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;!-- Texto de copyright --&gt;
+    &amp;copy; 2025 Tu Nombre - Portafolio
+  &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      <p>
+        A partir de aquí, te centrarás en crear o vaciar tu 
+        <strong>styles.css</strong> para resolver los siguientes ejercicios.
+      </p>
+    </section>
+
+    <!-- =========================================
+         2. Primeros Estilos en el CSS
+    ========================================== -->
+    <section>
+      <h2>2. Selectores Básicos y Reset</h2>
+      <ol>
+        <li>
+          <strong>Reset y box-sizing:</strong> Añade en <code>styles.css</code> un pequeño 
+          reset que quite márgenes y paddings por defecto, y pon 
+          <code>box-sizing: border-box;</code> para todos los elementos con el 
+          selector universal <code>*</code>.
+        </li>
+        <li>
+          <strong>Estilo global para <code>body</code>:</strong> Asigna una fuente 
+          base, un color de fondo suave (por ejemplo, <code>#f0f0f0</code>) y un 
+          color de texto oscuro (<code>#333</code>). Deja el 
+          <code>line-height</code> en <code>1.6</code> y reintroduce márgenes o 
+          <code>padding</code> básicos si lo deseas.
+        </li>
+        <li>
+          <strong>Encabezado (#main-header):</strong> Para probar un selector ID, 
+          aplica un fondo llamativo (podría ser <code>#4CAF50</code> o el color que elijas) 
+          y un color de texto blanco, verificando que el cabecero destaque.
+        </li>
+        <li>
+          <strong>Texto en h1, h2, p:</strong> Añade márgenes inferiores para separar 
+          títulos y párrafos. Aplica el tamaño de fuente que creas adecuado para 
+          jerarquizar.
+        </li>
+      </ol>
+      <p>
+        Con esto, tu página debería tener un estilo general, sin márgenes pegados y 
+        con tipografía consistente.
+      </p>
+    </section>
+
+    <!-- =========================================
+         3. Colores, Fuentes y Tipografía
+    ========================================== -->
+    <section>
+      <h2>3. Colores, Fuentes y Textos</h2>
+      <ol>
+        <li>
+          <strong>Paleta de colores:</strong> Elige un color primario, uno secundario, 
+          y colores neutros (fondo claro, texto oscuro). Úsalos para el <code>header</code>, 
+          <code>footer</code>, títulos y botones.
+        </li>
+        <li>
+          <strong>Fuente personalizada (opcional):</strong> Usa Google Fonts o 
+          <code>@import</code> en tu CSS para una fuente como 
+          <em>Open Sans</em>, <em>Roboto</em>, etc. Reemplaza la fuente 
+          por defecto del body con la nueva fuente.
+        </li>
+        <li>
+          <strong>Jerarquía tipográfica:</strong> Ajusta tamaños en <code>h1</code>, 
+          <code>h2</code> y <code>p</code> para una lectura clara. Por ejemplo, 
+          <code>h1</code> grande (2em), <code>h2</code> un poco más pequeño (1.5em), 
+          y el párrafo (1em).
+        </li>
+        <li>
+          <strong>Margen y padding:</strong> Añade <code>padding</code> en cada sección 
+          (<code>section</code>) para que el contenido no se pegue a los bordes. 
+          Ajusta <code>margin-bottom</code> en títulos si lo ves necesario.
+        </li>
+      </ol>
+      <p>
+        Tras este paso, la tipografía y colores deberían lucir más profesionales 
+        y organizados.
+      </p>
+    </section>
+
+    <!-- =========================================
+         4. Modelo de Caja y Bordes
+    ========================================== -->
+    <section>
+      <h2>4. Modelo de Caja (Box Model)</h2>
+      <ol>
+        <li>
+          <strong>Secciones:</strong> Alterna fondos entre secciones (blanco, gris claro, etc.) 
+          y asigna <code>padding: 40px</code> (por ejemplo) arriba y abajo.
+        </li>
+        <li>
+          <strong>Tarjetas de Proyectos:</strong> Usa <code>.project-card</code> para aplicar 
+          <code>padding</code>, <code>border</code> (1px gris) y 
+          <code>border-radius</code> (5px). Añade <code>margin</code> entre tarjetas.
+        </li>
+        <li>
+          <strong>Imágenes Responsivas:</strong> Dentro de <code>.project-card</code>, 
+          pon <code>img { max-width: 100%; height: auto; }</code> para que no excedan 
+          el ancho del contenedor.
+        </li>
+        <li>
+          <strong>Lista de Habilidades:</strong> <code>ul.skills-list</code> sin viñetas 
+          (<code>list-style: none;</code>), y convierte cada <code>li</code> en un bloque 
+          con <code>display: inline-block;</code> o <code>flex</code> para que se 
+          muestren como “chips” con <code>padding</code>, fondo claro y 
+          <code>border-radius</code>.
+        </li>
+        <li>
+          <strong>Formulario de Contacto:</strong> Aplica <code>margin-bottom</code> 
+          en los campos, un <code>border</code> suave, <code>padding</code> interno, 
+          y <code>border-radius</code> para inputs y textarea.
+        </li>
+      </ol>
+      <p>
+        Con esto, verás cada bloque (tarjetas, habilidades, formulario) más 
+        definido y ordenado.
+      </p>
+    </section>
+
+    <!-- =========================================
+         5. Posicionamiento
+    ========================================== -->
+    <section>
+      <h2>5. Posicionamiento (fixed, relative, absolute, sticky)</h2>
+      <ol>
+        <li>
+          <strong>Header Fijo:</strong> Haz que el <em>header</em> se quede arriba 
+          con <code>position: fixed; top: 0; width: 100%;</code>. Asegúrate de que 
+          el contenido principal no quede oculto (añade <code>margin-top</code> o 
+          <code>padding-top</code> en <code>main</code>).
+        </li>
+        <li>
+          <strong>Flecha Scroll Down:</strong> Podrías posicionarla con 
+          <code>position: absolute;</code> dentro del <em>header</em> (el <em>header</em> 
+          debe tener <code>position: relative;</code>). 
+        </li>
+        <li>
+          <strong>Sticky (opcional):</strong> Prueba con <code>position: sticky;</code> 
+          en algún <code>h2</code> o elemento para que se “pegue” al tope al hacer scroll 
+          en su contenedor.
+        </li>
+      </ol>
+      <p>
+        El objetivo es practicar cómo fijar el menú de navegación, y colocar ciertos 
+        elementos de forma absoluta o sticky dentro de sus contenedores.
+      </p>
+    </section>
+
+    <!-- =========================================
+         6. Flexbox Básico
+    ========================================== -->
+    <section>
+      <h2>6. Distribución con Flexbox</h2>
+      <ol>
+        <li>
+          <strong>Header con Flexbox:</strong> Aplica <code>display: flex;</code>, 
+          <code>justify-content: space-between;</code> y 
+          <code>align-items: center;</code> para alinear el nombre a la izquierda 
+          y la navegación (ul) a la derecha (o en otra disposición que te guste).
+        </li>
+        <li>
+          <strong>Menú en línea:</strong> Dentro del <code>.menu ul</code>, usa 
+          <code>display: flex;</code> y un <code>gap</code> para separar cada 
+          <code>li</code>. Quita <code>list-style</code> si lo deseas.
+        </li>
+        <li>
+          <strong>Tarjetas de Proyectos (alternativa):</strong> En lugar de Grid, 
+          podrías usar <code>display: flex;</code> y <code>flex-wrap: wrap;</code> 
+          para que se reorganicen en varias filas al reducir la ventana.
+        </li>
+        <li>
+          <strong>Lista de habilidades con flex:</strong> 
+          <code>.skills-list { display: flex; flex-wrap: wrap; gap: 1em; }</code> 
+          para repartir los <code>li</code>.
+        </li>
+      </ol>
+      <p>
+        Observa cómo <strong>Flexbox</strong> facilita la distribución y el 
+        alineamiento en una dimensión (horizontal o vertical).
+      </p>
+    </section>
+
+    <!-- =========================================
+         7. CSS Grid
+    ========================================== -->
+    <section>
+      <h2>7. Diseño con Grid (opcional o complementario)</h2>
+      <ol>
+        <li>
+          <strong>Proyectos con Grid:</strong> Define 
+          <code>display: grid;</code> en la sección de proyectos, usa 
+          <code>grid-template-columns</code> para crear columnas, y 
+          <code>gap</code> para separar las tarjetas.
+        </li>
+        <li>
+          <strong>Minmax/auto-fit:</strong> Experimenta con 
+          <code>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));</code> 
+          para lograr un <em>layout</em> responsivo automático.
+        </li>
+        <li>
+          <strong>Alineación:</strong> Utiliza <code>justify-items</code> y 
+          <code>align-items</code> para centrar el contenido dentro de cada “celda”.
+        </li>
+      </ol>
+      <p>
+        <strong>CSS Grid</strong> te ayudará a gestionar la disposición de elementos 
+        en dos dimensiones (filas y columnas) de manera más declarativa.
+      </p>
+    </section>
+
+    <!-- =========================================
+         8. Media Queries y Responsive
+    ========================================== -->
+    <section>
+      <h2>8. Media Queries y Responsive</h2>
+      <ol>
+        <li>
+          <strong>Breakpoint para móvil:</strong> Crea una media query para 
+          <code>(max-width: 600px)</code> (u otro valor). Ajusta el <em>header</em> 
+          para que pase a columna, reduce el tamaño de fuente del <code>h1</code>, etc.
+        </li>
+        <li>
+          <strong>Tarjetas en una sola columna:</strong> En pantallas pequeñas, 
+          podrías cambiar <code>flex-direction</code> a <code>column</code> o 
+          <code>grid-template-columns: 1fr</code> para que se apilen.
+        </li>
+        <li>
+          <strong>Formulario adaptable:</strong> Asegúrate que <code>input</code>, 
+          <code>textarea</code> y el <code>button</code> tengan 
+          <code>width: 100%</code> en móviles si lo deseas.
+        </li>
+      </ol>
+      <p>
+        Verifica el resultado en distintos anchos de pantalla. 
+        <em>Responsive design</em> te permite ofrecer una buena experiencia 
+        tanto en escritorio como en dispositivos móviles.
+      </p>
+    </section>
+
+    <!-- =========================================
+         9. Pseudoclases y Pseudo-elementos
+    ========================================== -->
+    <section>
+      <h2>9. Pseudoclases y Pseudo-elementos</h2>
+      <ol>
+        <li>
+          <strong>Hover en enlaces:</strong> Cambia el color o subraya en 
+          <code>a:hover</code>.
+        </li>
+        <li>
+          <strong>Estados del formulario:</strong> 
+          <code>input:focus</code> (cambia borde), 
+          <code>input:invalid</code> y <code>input:valid</code> 
+          para retroalimentación al usuario.
+        </li>
+        <li>
+          <strong>Decoración con ::before / ::after:</strong> Por ejemplo, 
+          añade una línea bajo cada <code>h2</code> con <code>::after</code> o 
+          un ícono en la lista de habilidades con <code>::before</code>.
+        </li>
+        <li>
+          <strong>:nth-child( )</strong> (opcional): Aplica estilos alternos 
+          a elementos pares o impares.
+        </li>
+      </ol>
+      <p>
+        Con las pseudoclases y pseudo-elementos, tu portafolio tendrá detalles 
+        de interacción y decoración sin modificar el HTML.
+      </p>
+    </section>
+
+    <!-- =========================================
+         10. Transiciones y Transformaciones
+    ========================================== -->
+    <section>
+      <h2>10. Transiciones y Transformaciones</h2>
+      <ol>
+        <li>
+          <strong>Transición en Hover:</strong> Define <code>transition</code> 
+          en el estado base (por ejemplo, <code>.project-card</code>) para que 
+          los cambios de <code>transform</code> o <code>box-shadow</code> 
+          al hover sean suaves.
+        </li>
+        <li>
+          <strong>Transformación de tarjetas:</strong> Aplica 
+          <code>.project-card:hover { transform: translateY(-5px); ... }</code> 
+          y una sombra suave para el efecto “levantar”.
+        </li>
+        <li>
+          <strong>Botón hover:</strong> Cambia ligeramente el color de fondo 
+          en <code>button:hover</code> con una transición de 0.3s o similar.
+        </li>
+      </ol>
+      <p>
+        Así consigues micro-interacciones sutiles que mejoran la experiencia de usuario.
+      </p>
+    </section>
+
+    <!-- =========================================
+         11. Animaciones con @keyframes
+    ========================================== -->
+    <section>
+      <h2>11. Animaciones con @keyframes</h2>
+      <ol>
+        <li>
+          <strong>Flecha “bounce”:</strong> Crea <code>@keyframes bounce</code> y 
+          en <code>.scroll-down</code> usa <code>animation: bounce 2s infinite;</code> 
+          para que suba y baje.
+        </li>
+        <li>
+          <strong>Fade-in en el header (opcional):</strong> Con 
+          <code>@keyframes fadeIn</code> y <code>animation: fadeIn 1s</code> 
+          para que aparezca progresivamente.
+        </li>
+        <li>
+          <strong>Animación en habilidades (opcional):</strong> Por ejemplo, 
+          un “pulse” que cambie su color de fondo, o unas barras que se llenen 
+          (requiere más HTML).
+        </li>
+      </ol>
+      <p>
+        Con <strong>@keyframes</strong> y <em>animation</em> puedes crear 
+        animaciones repetitivas o que ocurran solo al cargar la página.
+      </p>
+    </section>
+
+    <!-- =========================================
+         12. Variables CSS (Custom Properties)
+    ========================================== -->
+    <section>
+      <h2>12. Variables CSS (Custom Properties)</h2>
+      <ol>
+        <li>
+          <strong>Definir en :root:</strong> Crea variables como 
+          <code>--color-primario</code>, <code>--color-secundario</code>, 
+          <code>--borde-redondeado</code>, etc.
+        </li>
+        <li>
+          <strong>Reemplaza valores:</strong> En tu CSS, donde usaste 
+          <code>#4CAF50</code> o <code>5px</code> repetidas veces, cambia a 
+          <code>var(--color-primario)</code> o <code>var(--borde-redondeado)</code>.
+        </li>
+        <li>
+          <strong>Prueba cambios:</strong> Cambia un solo valor en <code>:root</code> 
+          y verás cómo todos los elementos que usan esa variable se actualizan. 
+          Esto facilita la personalización del tema.
+        </li>
+      </ol>
+      <p>
+        <strong>Variables CSS</strong> hacen tu código más mantenible y escalable.
+      </p>
+    </section>
+
+    <!-- =========================================
+         Conclusión
+    ========================================== -->
+    <section>
+      <h2>Conclusión y Buenas Prácticas</h2>
+      <ul>
+        <li>
+          <strong>Organiza tu CSS:</strong> Usa comentarios y secciones 
+          (<em>header, secciones, footer, media queries</em>) para que sea 
+          fácil de leer.
+        </li>
+        <li>
+          <strong>No abuses de los efectos:</strong> Aplica animaciones y 
+          transiciones con moderación para no sobrecargar la experiencia.
+        </li>
+        <li>
+          <strong>Prueba en varios dispositivos:</strong> Usa las herramientas 
+          del navegador para simular distintas resoluciones y confirma que 
+          todo se vea bien.
+        </li>
+        <li>
+          <strong>Valida tu HTML y CSS:</strong> Emplea validadores como 
+          <em>W3C Validator</em> para pulir errores y mejorar la accesibilidad.
+        </li>
+        <li>
+          <strong>Sigue aprendiendo:</strong> Una vez domines estos conceptos, 
+          puedes añadir JavaScript para menú desplegable, sliders, etc. 
+          También explorar <em>Sass/SCSS</em> para proyectos grandes.
+        </li>
+      </ul>
+      <p>
+        ¡Listo! Con esta guía has repasado desde selectores básicos hasta 
+        animaciones. Cualquier duda o problema, revisa la consola del navegador 
+        o pregunta a tu profesor/compañeros. ¡Sigue practicando y mejorando tu 
+        portafolio!
+      </p>
+    </section>
+
+  </main>
+
+</body>
+</html>

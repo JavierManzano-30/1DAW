@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio de María Pérez</title>
+  <!-- Vinculamos el archivo CSS externo -->
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <!-- Header con nombre y menú de navegación -->
+  <header id="main-header">
+    <h1 class="nombre">María Pérez</h1>
+    <p class="tagline">Desarrolladora Web Front-End Junior</p>
+    <nav class="menu">
+      <ul>
+        <li><a href="#about">Sobre Mí</a></li>
+        <li><a href="#projects">Proyectos</a></li>
+        <li><a href="#skills">Habilidades</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+    </nav>
+    <!-- Flecha para incitar a hacer scroll a la siguiente sección -->
+    <a href="#about" class="scroll-down">&#x2B07;</a>
+  </header>
+
+  <!-- Sección Sobre Mí -->
+  <main>
+    <section id="about">
+      <h2>Sobre Mí</h2>
+      <div class="perfil">
+        <img src="https://via.placeholder.com/200.png?text=Perfil" alt="Foto de perfil" class="perfil-foto" />
+        <p>¡Hola! Soy María, una apasionada desarrolladora front-end en formación. Me encanta crear sitios web limpios, funcionales y con buen diseño. Estoy en mi primer año de Desarrollo Web, aprendiendo cada día nuevas tecnologías y mejores prácticas. Busco constantemente mejorar mis habilidades y afrontar proyectos desafiantes que me permitan crecer como profesional.</p>
+      </div>
+    </section>
+
+    <!-- Sección Proyectos -->
+    <section id="projects">
+      <h2>Proyectos</h2>
+      <article class="project-card">
+        <h3>Blog Personal</h3>
+        <img src="https://via.placeholder.com/300x200.png?text=Proyecto+1" alt="Captura del proyecto Blog Personal" />
+        <p>Un blog personal estático construido con HTML5 y CSS3, con secciones de artículos, sobre mí y contacto. Sirve como bitácora para practicar maquetación web y aplicar estilos tipográficos y de diseño responsivo.</p>
+      </article>
+      <article class="project-card">
+        <h3>Juego del Memorama</h3>
+        <img src="https://via.placeholder.com/300x200.png?text=Proyecto+2" alt="Captura del proyecto Juego del Memorama" />
+        <p>Una pequeña aplicación de juego de memoria (matching game) implementada con HTML, CSS y JavaScript. Incluye tarjetas que se voltean al hacer clic, temporizador y conteo de intentos. Proyecto para practicar interactividad con JS y animaciones en CSS.</p>
+      </article>
+      <article class="project-card">
+        <h3>Tienda Online Demo</h3>
+        <img src="https://via.placeholder.com/300x200.png?text=Proyecto+3" alt="Captura del proyecto Tienda Online" />
+        <p>Prototipo de una página de tienda en línea. Presenta una galería de productos ficticios con sus imágenes, nombres y precios. Este proyecto se enfocó en el diseño responsive usando Flexbox y Grid para organizar los productos en diferentes tamaños de pantalla.</p>
+      </article>
+    </section>
+
+    <!-- Sección Habilidades -->
+    <section id="skills">
+      <h2>Habilidades</h2>
+      <ul class="skills-list">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript (ES6)</li>
+        <li>Git y GitHub</li>
+        <li>Diseño Responsivo</li>
+      </ul>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contact">
+      <h2>Contacto</h2>
+      <p>Si deseas ponerte en contacto conmigo, puedes enviarme un correo o rellenar el siguiente formulario:</p>
+      <p><strong>Email:</strong> <a href="mailto:maria.perez@example.com">maria.perez@example.com</a></p>
+      <!-- Formulario de contacto -->
+      <form class="contact-form">
+        <div>
+          <label for="nombre">Nombre:</label><br>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+        </div>
+        <div>
+          <label for="email">Email:</label><br>
+          <input type="email" id="email" name="email" placeholder="Tu correo electrónico" required />
+        </div>
+        <div>
+          <label for="mensaje">Mensaje:</label><br>
+          <textarea id="mensaje" name="mensaje" rows="4" placeholder="Tu mensaje" required></textarea>
+        </div>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 María Pérez - Portafolio Ficticio para Práctica Web</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,400 @@
+/* ==================================
+   1. VARIABLES Y RESET BÁSICO
+================================== */
+:root {
+  /* Paleta de colores */
+  --color-primario: #4CAF50;
+  --color-secundario: #34495e;
+  --color-texto: #333;
+  --color-fondo: #f5f5f5;
+  --color-blanco: #fff;
+  
+  /* Tipografía */
+  --fuente-principal: 'Open Sans', sans-serif;
+  
+  /* Espaciados y dimensiones */
+  --padding-seccion: 40px;
+  --borde-redondeado: 5px;
+  --duracion-transicion: 0.3s;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==================================
+   2. ESTILOS GLOBALES
+================================== */
+
+/* Estilo base */
+html {
+  scroll-behavior: smooth; /* Para desplazamiento suave al usar anclas */
+}
+
+body {
+  font-family: var(--fuente-principal), sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+/* Márgenes básicos en títulos y párrafos */
+h1, h2, h3 {
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+/* Enlaces básicos */
+a {
+  text-decoration: none;
+  color: var(--color-secundario);
+  transition: color var(--duracion-transicion) ease;
+}
+
+a:hover {
+  color: var(--color-primario);
+}
+
+/* ==================================
+   3. CABECERA (HEADER)
+================================== */
+
+#main-header {
+  background: var(--color-primario);
+  color: var(--color-blanco);
+  /* Para que el header esté siempre visible */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  
+  /* Flexbox para alinear contenido */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 2em;
+}
+
+/* Ajuste para evitar que el main quede oculto tras el header fijo */
+body > main {
+  margin-top: 80px; /* Ajusta según la altura real del header */
+}
+
+.nombre {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+/* Subtítulo en el header */
+.tagline {
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+/* Opcional: si quieres tagline en la misma línea que el nombre,
+   podrías colocarla en un contenedor junto con el h1. */
+
+/* Navegación */
+.menu ul {
+  display: flex;
+  gap: 1em; /* Separación entre enlaces */
+  list-style: none;
+}
+
+/* Ajustes de la flecha de scroll-down en el header */
+.scroll-down {
+  margin-left: 1em;
+  font-size: 1.5em;
+  transition: transform var(--duracion-transicion);
+}
+
+.scroll-down:hover {
+  transform: scale(1.2);
+}
+
+/* ==================================
+   4. SECCIONES PRINCIPALES
+================================== */
+
+/* Estructura general de secciones */
+section {
+  padding: var(--padding-seccion) 2em;
+}
+
+/* Títulos de sección con pseudo-elemento decorativo */
+section h2 {
+  position: relative;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+/* Pseudo-elemento línea decorativa debajo de cada h2 */
+section h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--color-primario);
+  margin: 0.5em auto 0 auto;
+}
+
+/* ==================================
+   5. SECCIÓN SOBRE MÍ
+================================== */
+
+#about .perfil {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+}
+
+.perfil-foto {
+  border-radius: 50%;
+  max-width: 200px;
+  display: block;
+}
+
+/* ==================================
+   6. PROYECTOS
+================================== */
+
+/* Contenedor de proyectos (puede ser Flexbox o Grid) */
+/* Versión con Grid adaptativo */
+#projects {
+  display: grid;
+  gap: 1.5em;
+  /* Tres columnas ajustables, mínimo 250px cada una */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Tarjetas de proyecto */
+.project-card {
+  background: var(--color-blanco);
+  border: 1px solid #ccc;
+  border-radius: var(--borde-redondeado);
+  padding: 1em;
+  transition: box-shadow var(--duracion-transicion), transform var(--duracion-transicion);
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; /* Centra imagen y texto */
+  text-align: center;
+}
+
+/* Efecto hover para destacar */
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.project-card img {
+  max-width: 100%;
+  border-radius: var(--borde-redondeado);
+  margin-bottom: 0.8em;
+}
+
+/* ==================================
+   7. HABILIDADES
+================================== */
+
+.skills-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center; /* Centra la lista en desktop */
+  padding: 0; /* Quitar margen/padding por defecto */
+}
+
+.skills-list li {
+  background: #e0e0e0;
+  padding: 0.5em 1em;
+  border-radius: var(--borde-redondeado);
+  font-weight: 500;
+  transition: background-color var(--duracion-transicion);
+}
+
+/* Efecto de hover en habilidades */
+.skills-list li:hover {
+  background-color: #cfcfcf;
+}
+
+/* O un pseudo-elemento para check: 
+.skills-list li::before {
+  content: "✔️ ";
+}
+*/
+
+/* ==================================
+   8. CONTACTO
+================================== */
+
+#contact p a[href^="mailto"]::before {
+  content: "✉️ ";
+}
+
+/* Formulario */
+.contact-form {
+  max-width: 500px;
+  margin: 1em auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.contact-form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.contact-form label {
+  font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: var(--borde-redondeado);
+  transition: border-color var(--duracion-transicion);
+}
+
+/* Estados de enfoque y validación en el formulario */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--color-primario);
+}
+
+.contact-form input:invalid,
+.contact-form textarea:invalid {
+  border-color: red;
+}
+
+.contact-form input:valid,
+.contact-form textarea:valid {
+  border-color: green;
+}
+
+.contact-form button {
+  padding: 0.75em 1.5em;
+  border: none;
+  border-radius: var(--borde-redondeado);
+  background: var(--color-secundario);
+  color: var(--color-blanco);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color var(--duracion-transicion);
+}
+
+/* Hover en botón */
+.contact-form button:hover {
+  background-color: var(--color-primario);
+}
+
+/* ==================================
+   9. FOOTER
+================================== */
+
+footer {
+  text-align: center;
+  background: var(--color-secundario);
+  color: var(--color-blanco);
+  padding: 1em;
+  margin-top: 2em;
+  font-size: 0.9em;
+}
+
+/* ==================================
+   10. ANIMACIONES (KEYFRAMES)
+================================== */
+
+/* Efecto "bounce" para la flecha de scroll-down */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* Asignamos la animación de rebote infinito a la flecha */
+.scroll-down {
+  animation: bounce 2s infinite;
+}
+
+/* ==================================
+   11. MEDIA QUERIES (RESPONSIVE)
+================================== */
+
+/* Ejemplo: Ajustes para móviles (max-width: 600px) */
+@media (max-width: 600px) {
+  /* Header: apilamos elementos */
+  #main-header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .menu ul {
+    flex-direction: column;
+  }
+  
+  /* Reducimos un poco el tamaño del h1 en móviles */
+  .nombre {
+    font-size: 1.7em;
+  }
+  
+  .tagline {
+    font-size: 0.85em;
+    margin-bottom: 1em;
+  }
+  
+  /* Imagen de perfil más pequeña */
+  .perfil-foto {
+    max-width: 150px;
+  }
+  
+  /* Secciones con menos padding */
+  section {
+    padding: 20px 1em;
+  }
+  
+  /* Proyectos en 1 columna en pantallas muy pequeñas (si no usamos auto-fit) 
+     (auto-fit ya se encarga de ajustarlo, pero forzamos a 1 col si quieres) */
+  /*
+  #projects {
+    grid-template-columns: 1fr;
+  }
+  */
+  
+  /* Centrar tarjetas en mobile si fuera flex
+  #projects {
+    flex-direction: column;
+    align-items: center;
+  }
+  .project-card {
+    width: 90%;
+    max-width: 400px;
+  }
+  */
+  
+  /* Botón de contacto al 100% */
+  .contact-form button {
+    width: 100%;
+  }
+}
