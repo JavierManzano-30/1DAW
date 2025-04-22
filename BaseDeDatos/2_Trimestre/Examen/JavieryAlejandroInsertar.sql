@@ -14,7 +14,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Volcando datos para la tabla manzano_marquez.clasificacion: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla manzano_marquez.clasificacion: ~10 rows (aproximadamente)
 INSERT INTO `clasificacion` (`nombre_comp`, `codigo_temp`, `nombre_club`, `num_posicion`) VALUES
 	('Champions', 2023, 'Club G', 7),
 	('Champions', 2023, 'Club H', 8),
@@ -27,7 +27,7 @@ INSERT INTO `clasificacion` (`nombre_comp`, `codigo_temp`, `nombre_club`, `num_p
 	('Liga B', 2023, 'Club C', 3),
 	('Liga B', 2023, 'Club D', 4);
 
--- Volcando datos para la tabla manzano_marquez.club: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla manzano_marquez.club: ~8 rows (aproximadamente)
 INSERT INTO `club` (`nombre_club`, `numero_socios`, `nombre_fed`) VALUES
 	('Club A', 1500, 'Federacion Norte'),
 	('Club B', 2300, 'Federacion Norte'),
@@ -38,7 +38,7 @@ INSERT INTO `club` (`nombre_club`, `numero_socios`, `nombre_fed`) VALUES
 	('Club G', 1100, 'Federacion Oeste'),
 	('Club H', 2500, 'Federacion Oeste');
 
--- Volcando datos para la tabla manzano_marquez.competicion: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla manzano_marquez.competicion: ~9 rows (aproximadamente)
 INSERT INTO `competicion` (`nombre_comp`) VALUES
 	('Champions'),
 	('Copa X'),
@@ -50,7 +50,7 @@ INSERT INTO `competicion` (`nombre_comp`) VALUES
 	('SuperLiga'),
 	('Torneo Z');
 
--- Volcando datos para la tabla manzano_marquez.contrato: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla manzano_marquez.contrato: ~8 rows (aproximadamente)
 INSERT INTO `contrato` (`codigo_persona`, `fecha`, `nombre_club`, `importe_cont`, `fecha_baja`) VALUES
 	(9, '2023-09-12', 'Club A', 55000, NULL),
 	(10, '2023-10-27', 'Club B', 60000, NULL),
@@ -61,7 +61,7 @@ INSERT INTO `contrato` (`codigo_persona`, `fecha`, `nombre_club`, `importe_cont`
 	(15, '2023-03-10', 'Club G', 50500, NULL),
 	(16, '2023-04-25', 'Club H', 49500, NULL);
 
--- Volcando datos para la tabla manzano_marquez.entrenador: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla manzano_marquez.entrenador: ~8 rows (aproximadamente)
 INSERT INTO `entrenador` (`codigo_persona`, `fecha_inicio_carrera`) VALUES
 	(1, '2010-07-15'),
 	(2, '2005-09-12'),
@@ -72,14 +72,14 @@ INSERT INTO `entrenador` (`codigo_persona`, `fecha_inicio_carrera`) VALUES
 	(7, '2018-04-09'),
 	(8, '2020-01-14');
 
--- Volcando datos para la tabla manzano_marquez.especialidad: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla manzano_marquez.especialidad: ~4 rows (aproximadamente)
 INSERT INTO `especialidad` (`nombre_esp`) VALUES
 	('Ataque'),
 	('Defensa'),
 	('Portero'),
 	('Táctica');
 
--- Volcando datos para la tabla manzano_marquez.fecha: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla manzano_marquez.fecha: ~12 rows (aproximadamente)
 INSERT INTO `fecha` (`fecha`) VALUES
 	('2023-01-01'),
 	('2023-02-15'),
@@ -94,21 +94,21 @@ INSERT INTO `fecha` (`fecha`) VALUES
 	('2023-11-14'),
 	('2023-12-31');
 
--- Volcando datos para la tabla manzano_marquez.federacion: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla manzano_marquez.federacion: ~4 rows (aproximadamente)
 INSERT INTO `federacion` (`nombre_fed`, `fecha_creacion`) VALUES
 	('Federacion Este', '2001-01-15'),
 	('Federacion Norte', '1995-06-12'),
 	('Federacion Oeste', '1978-11-30'),
 	('Federacion Sur', '1987-09-23');
 
--- Volcando datos para la tabla manzano_marquez.habilidad: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla manzano_marquez.habilidad: ~4 rows (aproximadamente)
 INSERT INTO `habilidad` (`codigo_persona`, `nombre_esp`, `grado`) VALUES
 	(9, 'Defensa', 85),
 	(10, 'Ataque', 90),
 	(11, 'Portero', 88),
 	(12, 'Táctica', 80);
 
--- Volcando datos para la tabla manzano_marquez.jugador: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla manzano_marquez.jugador: ~22 rows (aproximadamente)
 INSERT INTO `jugador` (`codigo_persona`, `peso`, `altura`) VALUES
 	(9, 78, 1.82),
 	(10, 70, 1.76),
@@ -133,7 +133,7 @@ INSERT INTO `jugador` (`codigo_persona`, `peso`, `altura`) VALUES
 	(29, 90, 1.95),
 	(30, 86, 1.89);
 
--- Volcando datos para la tabla manzano_marquez.oferta: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla manzano_marquez.oferta: ~8 rows (aproximadamente)
 INSERT INTO `oferta` (`codigo_persona`, `fecha`, `nombre_club`, `importe_oferta`) VALUES
 	(9, '2023-01-01', 'Club A', 55000),
 	(10, '2023-02-15', 'Club B', 60000),
@@ -144,7 +144,7 @@ INSERT INTO `oferta` (`codigo_persona`, `fecha`, `nombre_club`, `importe_oferta`
 	(15, '2023-07-05', 'Club G', 50500),
 	(16, '2023-08-18', 'Club H', 49500);
 
--- Volcando datos para la tabla manzano_marquez.persona: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla manzano_marquez.persona: ~30 rows (aproximadamente)
 INSERT INTO `persona` (`codigo_persona`, `nombre`, `direccion`, `telefono`, `fecha_nacimiento`) VALUES
 	(1, 'Juan', 'Calle 1', '123456789', '1990-05-14'),
 	(2, 'Pedro', 'Calle 2', '987654321', '1985-07-22'),
@@ -177,7 +177,7 @@ INSERT INTO `persona` (`codigo_persona`, `nombre`, `direccion`, `telefono`, `fec
 	(29, 'Joaquin', 'Calle 29', '717171717', '1985-02-18'),
 	(30, 'Felipe', 'Calle 30', '818181818', '1993-03-22');
 
--- Volcando datos para la tabla manzano_marquez.temporada: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla manzano_marquez.temporada: ~6 rows (aproximadamente)
 INSERT INTO `temporada` (`codigo_temp`) VALUES
 	(2020),
 	(2021),

@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    cursor: url(/img/cursor.svg);
+    cursor: url(./img/cursor.svg), auto;
     /*Para cambiar el cursor */
     margin: 0;
     /* Márgen nulo*/
@@ -124,11 +124,11 @@ section img { /* Con esto toco todas las imágenes dentro de las secciones*/
     width: auto;
 }
 
-section img:nth-child(even) { /* Aquí les digo donde colocarse las imágenes impares que estan en los dif*/
+.web section:nth-child(even) img { /* Aquí les digo donde colocarse las imágenes impares que estan en los dif*/
     float: left;
 }
 
-section img:nth-child(odd) { /* Aquí les digo donde colocarse las imágenes pares que estan en los dif*/
+.web section:nth-child(odd) img { /* Aquí les digo donde colocarse las imágenes pares que estan en los dif*/
     float: right;
 }
 
