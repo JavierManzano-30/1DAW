@@ -1,0 +1,35 @@
+body {
+    background-color: lightgreen;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    transform: scale(1.1);
+  }
+
+.btn-inicio {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: progress;
+}
+
+.btn-ver {
+    background-color: transparent;
+    color: #3498db;
+    border: 2px solid #3498db;
+    cursor: help;
+}
+
+.btn-cancelar {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    cursor: not-allowed;
+}
