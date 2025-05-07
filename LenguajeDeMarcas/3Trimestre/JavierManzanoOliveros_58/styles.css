@@ -1,0 +1,118 @@
+#navlist {
+    position: relative;
+}
+
+#navlist li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    top: 0;
+}
+
+#navlist li a {
+    height: 70px;
+    display: block;
+}
+
+/* Imágenes */
+
+#Tres {
+    width: 90px;
+    height: 70px;
+    background: url(BarraNavegacion.png) 0 0;
+    left: 0;
+}
+
+#Home {
+    width: 132px;
+    height: 70px;
+    background: url(BarraNavegacion.png) -89px 0;
+    left: 90px;
+}
+
+#About {
+    width: 132px;
+    height: 70px;
+    background: url(BarraNavegacion.png) -221px 0;
+    left: 222px;
+}
+
+#Shop {
+    width: 132px;
+    height: 70px;
+    background: url(BarraNavegacion.png) -353px 0;
+    left: 354px;
+}
+
+#Blog {
+    width: 132px;
+    height: 70px;
+    background: url(BarraNavegacion.png) -485px 0;
+    left: 486px;
+}
+
+#Contact {
+    width: 132px;
+    height: 70px;
+    background: url(BarraNavegacion.png) -617px 0;
+    left: 618px;
+}
+
+#Lupa {
+    width: 280px;
+    height: 70px;
+    background: url(BarraNavegacion.png) -749px 0;
+    left: 750px;
+}
+
+/* Hover */
+
+#Tres:hover {
+    width: 90px;
+    height: 70px;
+    background: url(BarraNavegacion.png) 0 -70px;
+    left: 0;
+}
+
+#Home:hover {
+    width: 132px;
+    height: 70px;
+    background: url(BarraNavegacion.png) -89px -70px;
+    left: 90px;
+}
+
+#About:hover {
+    width: 132px;
+    height: 70px;
+    background: url(BarraNavegacion.png) -221px -70px;
+    left: 222px;
+}
+
+#Shop:hover {
+    width: 132px;
+    height: 70px;
+    background: url(BarraNavegacion.png) -353px -70px;
+    left: 354px;
+}
+
+#Blog:hover {
+    width: 132px;
+    height: 70px;
+    background: url(BarraNavegacion.png) -485px -70px;
+    left: 486px;
+}
+
+#Contact:hover {
+    width: 132px;
+    height: 70px;
+    background: url(BarraNavegacion.png) -617px -70px;
+    left: 618px;
+}
+
+#Lupa:hover {
+    width: 280px;
+    height: 70px;
+    background: url(BarraNavegacion.png) -749px -70px;
+    left: 750px;
+}
