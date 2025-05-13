@@ -1,0 +1,8 @@
+<suite name="OrangeHRM Suite">
+    <test name="Login y Job Title Tests">
+        <classes>
+            <class name="tests.TC1_LoginValidoTest"/>
+            <class name="tests.TC2_AddJobTitleTest"/>
+        </classes>
+    </test>
+</suite>
